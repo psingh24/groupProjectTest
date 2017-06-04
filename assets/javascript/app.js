@@ -1,5 +1,6 @@
 $(document).ready(function(){
-
+var userHtml = $("#username");
+var username;
 //  Initialize Firebase
    var config = {
     apiKey: "AIzaSyCgQFFxv6-cd0vRQesrZUD447sO7AEYklo",
