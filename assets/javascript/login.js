@@ -65,7 +65,8 @@ function facebookSignIn() {
 });
   }
 // Sign in
-$(".signin").on("click", function() {
+$(".signin").on("click", function(event) {
+    event.preventDefault()
 	var method = $(this).attr("data")
 	console.log("hello")
         if (method === "google") {
