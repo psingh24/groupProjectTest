@@ -1,164 +1,171 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <!--Bootstrap-->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
-        crossorigin="anonymous">
-    <!--fontawesome-->
-    <script src="https://use.fontawesome.com/b63da90f23.js"></script>
-    <!--Jquery-->
-    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-    <!--javascript-->
-    <script type="text/javascript" src="app.js"></script>
-    <!--StyleSheet-->
-    <link rel="stylesheet" href="style.css">
-<style>
-* {box-sizing: border-box}
-body {font-family: "Lato", sans-serif;}
-
-/* Style the tab */
-div.tab {
-    float: left;
-    border: 1px solid #ccc;
-    background-color: #f1f1f1;
-    width: 30%;
-    height: 400px;
-}
-
-/* Style the buttons inside the tab */
-div.tab button {
-    display: block;
-    background-color: inherit;
-    color: black;
-    padding: 22px 16px;
-    width: 100%;
-    border: none;
-    outline: none;
-    text-align: left;
-    cursor: pointer;
-    transition: 0.3s;
-    font-size: 17px;
-}
-
-/* Change background color of buttons on hover */
-div.tab button:hover {
-    background-color: #ddd;
-}
-
-/* Create an active/current "tab button" class */
-div.tab button.active {
-    background-color: #ccc;
-}
-
-/* Style the tab content */
-.tabcontent {
-    float: left;
-    padding: 0px 12px;
-    border: 1px solid #ccc;
-    width: 70%;
-    border-left: none;
-    height: 400px;
-}
-</style>
+<title>All Y'all!</title>
+<link href="https://fonts.googleapis.com/css?family=Muli|Poppins|Open+Sans|Oswald" rel="stylesheet">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="assets/css/topher.css">
+<script src="https://use.fontawesome.com/fcbf3ec2ad.js"></script>
 </head>
 <body>
-    <!--<div class="jumbotron">Hello</div>-->
+
+<div id="konami"></div>
+
+<div class="homepage-hero-module">
+    <div class="video-container">
+    	<div class="btn btn-default" id="login-button">
+		<h4>Log in</h4>
+		</div>
+        <div class="filter"></div>
+        <video autoplay loop class="fillWidth">
+            <source src="assets/images/Background-Video/MP4/Austin.mp4" type="video/mp4" />Your browser does not support the video tag. I suggest you upgrade your browser to Google Chrome.
+            <source src="assets/images/Background-Video/WEBM/Austin.webm" type="video/webm" />Your browser does not support the video tag. I suggest you upgrade your browser to Google Chrome.
+        </video>
+        <div class="poster hidden">
+            <img src="assets/images/austin.jpg" alt="Austin skyline">
+        </div>
+    </div>
+</div>
+
+
+
 <div class="container">
-<div class="row">
- <div id="sidePanel" class="col-md-3">
-            <div class="row">
-                <div class="col-md-6"><h2>Hello</h2></div>
-                 <div class="col-md-6"><h2>Name!</h2></div>
-            </div>
-             <div class="row">
-                  <div class="col-md-12 food"></div>
-             </div>
-              <div class="row">
-                   <div class="col-md-6"><h2></h2></div>
-                 <div class="col-md-6"><h2></h2></div>
-              </div>
-               <div class="row">
-                    <div class="col-md-6"><h2></h2></div>
-                 <div class="col-md-6"><h2></h2></div>
-               </div>
-        </div>
-        <div class="col-md-9">
+	<div class="row">
+		<!-- <div class="btn btn-default" id="login-button">
+		<h4>Log in</h4>
+		</div> -->
+	</div>	
+	<!-- MODAL -->
+    <div id="modal-login">
+    		<div class="modal-content">
+    			<div class="modal-header">
+    				<img id="login-logo" src="assets/images/orangehat.png" alt="All Y'all logo">
+    				<h1 class="modal-title text-center" id="modal-login-label">Welcome to All Y'all</h1>
+    				<p id="tagline" class="text-center">Austin's local source for local events</p>
+    			</div>
+    			<div class="modal-body">
+                    <form role="form">
+                    	<div class="form-group">
+							<input type="name" class="form-control" id="nameInput" placeholder="Name">
+						</div>
+						<div class="form-group">
+							<input type="email" class="form-control" id="emailInput" placeholder="Email">
+						</div>
+						<div id="form-redo" class="form-group">
+							<input type="password" class="form-control" id="createPasswordInput" placeholder="Create a password">
+						</div>
+						<button type="submit" class="btn btn-default" id="addUser">Continue</button>
+						<hr>
+						<div class="row">
+							<div class="col-md-12 text-center">
+								<button id="facebook-btn" type="submit" data="facebook" class="signin btn btn-primary"><i class="fa fa fa-facebook" aria-hidden="true"></i> Sign up with Facebook</button>
+								<button id="google-btn" type="submit" data="google" class="signin btn btn-danger"><i class="fa fa-google-plus" aria-hidden="true"></i> Sign up with Google</button>
+							</div>
+						</div>
+					</form> 
+    			</div>
+    		</div>
+    </div>
+</div>    
 
-<div class="tab">
-  <button class="tablinks" onclick="openCity(event, 'London')" id="defaultOpen">Food</button>
-  <button class="tablinks" onclick="openCity(event, 'Paris')">Events</button>
-  <button class="tablinks" onclick="openCity(event, 'Tokyo')">Bars</button>
-   <button class="tablinks" onclick="openCity(event, 'London')" id="defaultOpen">Concerts</button>
- 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!-- easter egg library -->
+<script type="text/javascript" src="https://cdn.rawgit.com/mikeflynn/egg.js/master/egg.min.js"></script>
+<script type="text/javascript">
+// click login - load existing user prompt
+$("#login-button").on("click", function(){
+	$("#modal-login-label").html("Log in to see more");
+	$("#tagline").remove();
+	$("#nameInput").remove();
+	$("#form-redo").html('<input type="password" class="form-control" id="PasswordInput" placeholder="Password">')
+	$("#facebook-btn").html('<i class="fa fa fa-facebook" aria-hidden="true"></i> Sign in with Facebook')
+	$("#google-btn").html('<i class="fa fa-google-plus" aria-hidden="true"></i> Sign in with Google</button>')
+})
 
-</div>
 
-<div id="London" class="tabcontent">
-        <div class="row text-center one">
-            <div class="col-md-4">
-                <img class="start" data="american" src="images/american.jpg" alt="american" style="width: 100px; height: 100px">
-            </div>
-            <div class="col-md-4"> <img class="start" data="chinese" src="images/chinese.jpg" alt="chinese" style="width: 100px; height: 100px"></div>
-            <div class="col-md-4"> <img class="start" data="italian" src="images/italian.jpg" alt="italian" style="width: 100px; height: 100px"></div>
-        </div>
-        <div class="row text-center two">
-            <div class="col-md-4"> <img class="start" data="indian" src="images/indian.jpg" alt="indian" style="width: 100px; height: 100px"></div>
-            <div class="col-md-4"> <img class="start" data="thai" src="images/thai.jpg" alt="thai" style="width: 100px; height: 100px"></div>
-            <div class="col-md-4"> <img class="start" data="random" src="images/random.jpg" alt="random" style="width: 100px; height: 100px"></div>
-        </div>
-        <div class="row text-center three">
-            <div class="col-md-4"> <img class="start" data="mexican" src="images/mexican.jpg" alt="mexican" style="width: 100px; height: 100px"></div>
-            <div class="col-md-4"> <img class="start" data="japanese" src="images/japanese.jpg" alt="japanese" style="width: 100px; height: 100px"></div>
-            <div class="col-md-4"> <img class="start" data="greek" src="images/greek.jpg" alt="greek" style="width: 100px; height: 100px"></div>
-        </div>
-</div>
 
-<div id="Paris" class="tabcontent">
-  <div class="row text-center">
-      <div class="col-md-4"><img src="images/sports.jpeg" alt="sports" style="width: 100px; height: 100px"></div>
-      <div class="col-md-4"><img src="images/sports.jpeg" alt="sports" style="width: 100px; height: 100px"></div>
-      <div class="col-md-4"><img src="images/sports.jpeg" alt="sports" style="width: 100px; height: 100px"></div>
-  </div>
-   <div class="row text-center">
-      <div class="col-md-4"><img src="images/sports.jpeg" alt="sports" style="width: 100px; height: 100px"></div>
-      <div class="col-md-4"><img src="images/sports.jpeg" alt="sports" style="width: 100px; height: 100px"></div>
-      <div class="col-md-4"><img src="images/sports.jpeg" alt="sports" style="width: 100px; height: 100px"></div>
-  </div>
-   <div class="row text-center">
-      <div class="col-md-4"><img src="images/sports.jpeg" alt="sports" style="width: 100px; height: 100px"></div>
-      <div class="col-md-4"><img src="images/sports.jpeg" alt="sports" style="width: 100px; height: 100px"></div>
-      <div class="col-md-4"><img src="images/sports.jpeg" alt="sports" style="width: 100px; height: 100px"></div>
-  </div>
-</div>
+// video
+	$( document ).ready(function() {
 
-<div id="Tokyo" class="tabcontent">
-  <h3>Tokyo</h3>
-  <p>Tokyo is the capital of Japan.</p>
-</div>
-        </div>
-</div>
-</div>
-<script>
-function openCity(evt, cityName) {
-    var i, tabcontent, tablinks;
-    tabcontent = document.getElementsByClassName("tabcontent");
-    for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
-    }
-    tablinks = document.getElementsByClassName("tablinks");
-    for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" active", "");
-    }
-    document.getElementById(cityName).style.display = "block";
-    evt.currentTarget.className += " active";
+    scaleVideoContainer();
+
+    initBannerVideoSize('.video-container .poster img');
+    initBannerVideoSize('.video-container .filter');
+    initBannerVideoSize('.video-container video');
+
+    $(window).on('resize', function() {
+        scaleVideoContainer();
+        scaleBannerVideoSize('.video-container .poster img');
+        scaleBannerVideoSize('.video-container .filter');
+        scaleBannerVideoSize('.video-container video');
+    });
+
+});
+
+function scaleVideoContainer() {
+
+    var height = $(window).height() + 5;
+    var unitHeight = parseInt(height) + 'px';
+    $('.homepage-hero-module').css('height',unitHeight);
+
 }
 
-// Get the element with id="defaultOpen" and click on it
-document.getElementById("defaultOpen").click();
+function initBannerVideoSize(element){
+
+    $(element).each(function(){
+        $(this).data('height', $(this).height());
+        $(this).data('width', $(this).width());
+    });
+
+    scaleBannerVideoSize(element);
+
+}
+
+function scaleBannerVideoSize(element){
+
+    var windowWidth = $(window).width(),
+    windowHeight = $(window).height() + 5,
+    videoWidth,
+    videoHeight;
+
+    // console.log(windowHeight);
+
+    $(element).each(function(){
+        var videoAspectRatio = $(this).data('height')/$(this).data('width');
+
+        $(this).width(windowWidth);
+
+        if(windowWidth < 1000){
+            videoHeight = windowHeight;
+            videoWidth = videoHeight / videoAspectRatio;
+            $(this).css({'margin-top' : 0, 'margin-left' : -(videoWidth - windowWidth) / 2 + 'px'});
+
+            $(this).width(videoWidth).height(videoHeight);
+        }
+
+        $('.homepage-hero-module .video-container video').addClass('fadeIn animated');
+
+    });
+}
+
+// konami easter egg
+var egg = new Egg();
+egg
+  .addCode("up,up,down,down,left,right,left,right,b,a", function() {
+    jQuery('#egggif').fadeIn(500, function() {
+      window.setTimeout(function() { jQuery('#egggif').hide(); }, 5000);
+    });
+  })
+  .addHook(function(){
+    console.log("Hook called for: " + this.activeEgg.keys);
+    console.log(this.activeEgg.metadata);
+    alert("HOWDY PARTNER!")
+
+  }).listen();
+    
+
+
 </script>
-     
+
 </body>
-</html> 
+</html>
