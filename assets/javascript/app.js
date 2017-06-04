@@ -14,6 +14,7 @@ var username;
 
 var database = firebase.database();
 var ref = database.ref("user");
+var pref = database.ref("user/preferences");
 
 // LOGIN SECTION==================================================================================
   //instance of the goggle provider object
@@ -272,7 +273,7 @@ function submit(){
 	    console.log(foodArray);
 	    console.log(drinksArray);
 
-	   	ref.ref("user/preferences").update({
+	   	pref.update({
 	   		food : foodArray,
 	   		drinks : drinksArray,
 	   		events : eventsArray
