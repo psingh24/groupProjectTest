@@ -272,7 +272,7 @@ function submit(){
 	    console.log(foodArray);
 	    console.log(drinksArray);
 
-	   	ref("user/preferences").update({
+	   	ref.ref("user/preferences").update({
 	   		food : foodArray,
 	   		drinks : drinksArray,
 	   		events : eventsArray
