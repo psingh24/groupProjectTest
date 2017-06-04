@@ -13,7 +13,7 @@ var username;
   firebase.initializeApp(config);
 
 var database = firebase.database();
-var ref = database.ref("user/preferences");
+var ref = database.ref("user");
 
 // LOGIN SECTION==================================================================================
   //instance of the goggle provider object
@@ -272,7 +272,7 @@ function submit(){
 	    console.log(foodArray);
 	    console.log(drinksArray);
 
-	   	ref.update({
+	   	ref("user/preferences").update({
 	   		food : foodArray,
 	   		drinks : drinksArray,
 	   		events : eventsArray
