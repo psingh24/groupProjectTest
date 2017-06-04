@@ -3,12 +3,12 @@
 <head>
 <title>AllY'all Application Preferences | Project #1</title>
 <link href="https://fonts.googleapis.com/css?family=Open+Sans|Oswald" rel="stylesheet">
-<script src="https://www.gstatic.com/firebasejs/4.0.0/firebase.js"></script>
 <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <link rel="stylesheet" type="text/css" href="assets/css/morgan.css">
 <!-- <link rel="stylesheet" type="text/css" href="assets/css/responsive.css"> -->
 <script type="text/javascript" src="assets/javascript/app.js"></script>
+<script type="text/javascript" src="assets/javascript/login.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.js"></script>
 
 </head>
@@ -28,7 +28,7 @@
 
 <div class="container">
 	<div class="jumbotron">
-		<h1>Welcome [username]</h1><br/>
+		<h1 id="username"></h1><br/>
 		<div class="container">
 			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ornare odio quis suscipit porttitor. Donec a molestie urna. Phasellus tempor scelerisque consectetur. Fusce at commodo ex, eget lacinia tortor. Fusce accumsan molestie risus, eget iaculis velit. Aliquam consectetur nisi nec gravida commodo.</p>
 		</div>
@@ -179,6 +179,6 @@
 		<button type="submit" id="submitBtn" class="btn btn-site btn-lg pref-btn">Submit</button>
 	</form>	
 </div>
-<script src="https://www.gstatic.com/firebasejs/4.1.1/firebase.js"></script>	
+<script src="https://www.gstatic.com/firebasejs/4.1.1/firebase.js"></script>
 </body>
 </html>
