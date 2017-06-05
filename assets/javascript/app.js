@@ -33,6 +33,10 @@ function createAccountWithEmailandPassword() {
 	.then(function(user) {
 		user.updateProfile({displayName: displayName})
 		console.log(displayName)
+		signedIn = ref.child(displayName) 
+        signedIn.set({
+            name: displayName
+})
 	
 	})
 
