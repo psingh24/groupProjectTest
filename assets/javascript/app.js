@@ -29,7 +29,7 @@ function googleSignIn() {
 			  // The signed-in user info.
 			var user = result.user;
 			  // ...
-            username = user.displayName;
+           
 			signedIn = ref.child(username) 
         	signedIn.set({
             name: username
@@ -54,8 +54,7 @@ function facebookSignIn() {
 		  var token = result.credential.accessToken;
 		  // The signed-in user info.
 		  var user = result.user;
-		  username = user.displayName;
-           
+		  
 		  loadMainPage()
 		
         }).catch(function(error) {
@@ -97,7 +96,8 @@ firebase.auth().signOut().then(function() {
 firebase.auth().onAuthStateChanged(function(firebaseUser){
 	if(firebaseUser) {
        //USer is signed in
-		userHtml.html("Welcome "+ firebaseUser.displayName)
+	   username = firebaseUser.displayName;
+		userHtml.html("Welcome "+ username)
 
 		// $(".name").html("<h2>Hi "+firebaseUser+"!</h2>")
 	} else {
