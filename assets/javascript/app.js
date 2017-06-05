@@ -22,9 +22,9 @@ var google = new firebase.auth.GoogleAuthProvider();
 var facebook = new firebase.auth.FacebookAuthProvider();
 
 // GOOGLE SIGNIN
-
+var displayName;
 function createAccountWithEmailandPassword() {
-	var displayName = $("#nameInput").val().trim();
+	displayName = $("#nameInput").val().trim();
 	var email = $("#emailInput").val().trim();
 	var password = $("#createPasswordInput").val().trim();
 
@@ -33,10 +33,6 @@ function createAccountWithEmailandPassword() {
 	.then(function(user) {
 		user.updateProfile({displayName: displayName})
 		console.log(displayName)
-		signedIn = ref.child(displayName) 
-        signedIn.set({
-            name: displayName
-})
 	
 	})
 
@@ -99,6 +95,10 @@ function facebookSignIn() {
   $("#addUser").on("click", function() {
 	  loadMainPage()	  
 	  createAccountWithEmailandPassword()
+	  signedIn = ref.child(displayName) 
+        signedIn.set({
+            name: displayName
+})
 	
   })
 
@@ -129,6 +129,7 @@ firebase.auth().signOut().then(function() {
 firebase.auth().onAuthStateChanged(function(firebaseUser){
 	if(firebaseUser) {
        //USer is signed in
+	   console.log(firebaseUser)
 
 	   username = firebaseUser.displayName
 		userHtml.html("Welcome "+ firebaseUser.displayName)
