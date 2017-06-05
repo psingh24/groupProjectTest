@@ -450,7 +450,7 @@ function createDrinkButton(drink){
 
 // Login APP SECTION===============================================================================
 
-var userData = signedIn.child("preferences")
+var userData = preferences.child()
 $(".login").on("click", function(event) {
 	event.preventDefault()
 	var method = $(this).attr("data")
