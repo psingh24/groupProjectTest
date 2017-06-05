@@ -95,11 +95,7 @@ firebase.auth().signOut().then(function() {
 firebase.auth().onAuthStateChanged(function(firebaseUser){
 	if(firebaseUser) {
        //USer is signed in
-		signedIn = ref.child(firebaseUser.displayName) 
-        signedIn.set({
-            name: firebaseUser.displayName,
-            email: firebaseUser.email
-})
+
 		// $(".name").html("<h2>Hi "+firebaseUser+"!</h2>")
 	} else {
 		console.log("not lgged In")
