@@ -93,18 +93,19 @@ firebase.auth().signOut().then(function() {
 firebase.auth().onAuthStateChanged(function(firebaseUser){
 	if(firebaseUser) {
        //USer is signed in
-		userHtml.html("Welcome "+ firebaseUser.displayName)
-		signedIn = ref.child(firebaseUser.displayName) 
-        signedIn.set({
-            name: firebaseUser.displayName,
-            email: firebaseUser.email
-})
+		userHtml.html("Welcome "+ userName)
 		// $(".name").html("<h2>Hi "+firebaseUser+"!</h2>")
 	} else {
 		console.log("not lgged In")
 	}
 })
-
+function saveUserInfo() {
+signedIn = ref.child(userName) 
+        signedIn.set({
+            name: userName
+})
+}
+saveUserInfo()
 function loadMainPage() {
      window.location = 'preferences.html';
  }
