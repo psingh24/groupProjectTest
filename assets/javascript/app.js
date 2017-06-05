@@ -274,14 +274,14 @@ function events() {
 food();
 drinks();
 events();
-var preferences;
+
 function submit(){
 	$("#submitBtn").on("click", function(event){
 		event.preventDefault();
 	    console.log(eventsArray);
 	    console.log(foodArray);
 	    console.log(drinksArray);
-		preferences = signedIn.child("preferences")
+		var preferences = signedIn.child("preferences")
 	   	preferences.set({
 	   		food : foodArray,
 	   		drinks : drinksArray,
@@ -450,16 +450,13 @@ function createDrinkButton(drink){
 
 // Login APP SECTION===============================================================================
 
-var userData = preferences.child()
+
 $(".login").on("click", function(event) {
 	event.preventDefault()
 	var method = $(this).attr("data")
 	console.log("hello")
         if (method === "google") {
 		googleSignIn();
-		userData.on("child_added", function(snapshot) {
-			console.log(snapshot.val())
-		})
 	
         }
 	else if(method === "facebook") {
