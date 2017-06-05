@@ -274,14 +274,14 @@ function events() {
 food();
 drinks();
 events();
-
+var preferences;
 function submit(){
 	$("#submitBtn").on("click", function(event){
 		event.preventDefault();
 	    console.log(eventsArray);
 	    console.log(foodArray);
 	    console.log(drinksArray);
-		var preferences = signedIn.child("preferences")
+		preferences = signedIn.child("preferences")
 	   	preferences.set({
 	   		food : foodArray,
 	   		drinks : drinksArray,
