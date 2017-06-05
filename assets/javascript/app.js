@@ -277,9 +277,161 @@ function submit(){
 	   		drinks : drinksArray,
 	   		events : eventsArray
 	   	});	   
+		foodAjax()
+
 	});
 }
 
 submit();
 // MAIN APP SECTION===============================================================================
+
+
+
+// SUGGESTIONS APP SECTION===============================================================================
+
+var mainBanner = "<div class='container'><div class='jumbotron'><h1>[username]'s Suggestions</h1><br/></div></div>"
+
+var foodBanner = "<div class='container'><div class='row'><div class='col-md-12'><div class='suggestions-hero'><img class='hero-image' src='assets/images/restaurants.jpg' alt='restaurants hero image'><h2 class='hero-title'>Eats</h2></div></div></div>"
+
+var drinksBanner = "<div class='container'><div class='row'><div class='col-md-12'><div class='suggestions-hero'><img class='hero-image' src='assets/images/bar.jpg' alt='bar hero image'><h2 class='hero-title'>drinks</h2></div></div></div>"
+
+
+// var reultContainer = "<div class='row'><div class='col-md-12'><div class='row'></div></div></div>"
+// var results = "<div class='row'><div class='col-md-12'><div class='row'><div class='col-md-6 suggestions-list-items'><div class='col-md-6'><a href='#'><img class='thumbnail-suggestions' src='"+restaurants[i].restaurant.thumb+"' alt='test'></a></div><div class='col-md-6'><h2 class='suggestions-h2'>"+estaurants[i].restaurant.name+"</h2><h4>"+restaurants[i].restaurant.location.address+"</h4><br/><p><a class='btn btn-site btn-lg' href='#' id='infoBtn' role='button' data-toggle='modal' data-target='#myModalInfo'>More Info</a></p></div></div></div></div></div>"
+
+
+// var resultContainer = "<div class='row'><div class='col-md-12'><div class='row'>"+results+results+results+results+"</div></div></div>"
+
+// $(".suggestionsContainer").append(mainBanner+foodBanner+resultContainer+drinksBanner+resultContainer)
+
+
+function initFoodAjax() {
+	var foodCode=[];
+var foodType="";
+		$.ajax({
+		url:"https://developers.zomato.com/api/v2.1/cuisines?city_id=278&apikey=142b97a736485a30ff5b9a92ddbb8fde",
+		method:"GET"
+		}).done(function(response){
+		foodCode=response.cuisines;
+	});
+}
+function foodAjax() {
+	initFoodAjax()
+    foodType="";
+    for(var i=0; i<foodCode.length;i++){
+        if(foodArray.indexOf(foodCode[i].cuisine.cuisine_name.toUpperCase())>-1){
+            foodType=foodType+"%2C"+foodCode[i].cuisine.cuisine_id.toString();
+        }
+    }
+    $.ajax({
+    url:"https://developers.zomato.com/api/v2.1/search?entity_id=278&entity_type=city&apikey=142b97a736485a30ff5b9a92ddbb8fde&count=4&sort=rating&order=desc&cuisines="+foodType,
+    method:"GET"
+    }).done(function(response){
+        var restaurants=response.restaurants;
+        for(var i=0; i<restaurants.length;i++){
+
+            $(".suggestionsContainer").append(mainBanner+foodBanner+"<div class='row'><div class='col-md-12'><div class='row'><div class='col-md-6 suggestions-list-items'><div class='col-md-6'><a href='#'><img class='thumbnail-suggestions' src='"+restaurants[i].restaurant.thumb+"' alt='test'></a></div><div class='col-md-6'><h2 class='suggestions-h2'>"+estaurants[i].restaurant.name+"</h2><h4>"+restaurants[i].restaurant.location.address+"</h4><br/><p><a class='btn btn-site btn-lg' href='#' id='infoBtn' role='button' data-toggle='modal' data-target='#myModalInfo'>More Info</a></p></div></div></div></div></div>")
+        }
+        $("#foodSuggestionResults").html(restaurantList);
+
+    });
+
+}
+
+
+
+// Drink Suggestions Part
+
+var drinkArray=["Bar", "Coffee shop", "Wine Bar","Juice Bar", "Beer Garden", "Brewery", "Lounge"]
+var drinkPickedArray= [];
+var drinkCode=[];
+var drinkType="";
+
+$.ajax({
+    url:"https://developers.zomato.com/api/v2.1/establishments?city_id=278&apikey=142b97a736485a30ff5b9a92ddbb8fde",
+    method:"GET"
+}).done(function(response){
+    drinkCode=response.establishments;
+});
+
+for(var i=0; i<drinkArray.length;i++){
+    createDrinkButton(drinkArray[i]);
+};
+
+
+$(document).on("click",".drinkButton", function(){
+    if($(this).attr("data-state")=="unclicked"){
+        if(drinkPickedArray.length<2){
+            var drink = $(this).attr("id");
+            drinkPickedArray.push(drink.toUpperCase());
+            $(this).removeClass("unclicked");
+            $(this).attr("data-state","clicked");
+        }
+        else{alert("You can only pick up to 2 drinks at a time")}
+    }
+    else if($(this).attr("data-state")=="clicked"){
+        var drink = $(this).attr("id");
+        var index = drinkPickedArray.indexOf(drink.toUpperCase());
+        drinkPickedArray.splice(index,1);
+        $(this).addClass("unclicked");
+        $(this).attr("data-state","unclicked");
+    }
+})
+
+
+$("#drinkSuggestion").on('click',function (event){
+    event.preventDefault();
+    drinkType="";
+    var drinkTypeArray=[];
+
+    for(var i=0; i<drinkCode.length;i++){
+        if(drinkPickedArray.indexOf(drinkCode[i].establishment.name.toUpperCase())>-1){
+            drinkTypeArray.push(drinkCode[i].establishment.id);
+        }
+    }
+
+    if(drinkTypeArray.length==1){
+       $.ajax({
+        url:"https://developers.zomato.com/api/v2.1/search?entity_id=278&entity_type=city&apikey=142b97a736485a30ff5b9a92ddbb8fde&sort=rating&count=4&order=des&establishment_type="+drinkTypeArray[0],
+        method:"GET"
+        }).done(function(response){
+            drink=response.restaurants;
+            var drinkList = $("<div>");
+            for(var i=0; i<drink.length;i++){
+                drinkList.append("<div><p>"+drink[i].restaurant.name+"</p>"+"<p>"+drink[i].restaurant.location.address+"</p>"+"<img src='"+drink[i].restaurant.thumb+"'></div>"+"<br/>")
+            }
+            $("#DrinkSuggestionResults").html(drinkList);
+        }); 
+    }
+    else if (drinkTypeArray.length==2){
+        $("#DrinkSuggestionResults").html("");
+        for(var j =0; j < drinkTypeArray.length; j++){
+            drinkType=drinkTypeArray[j];
+            $.ajax({
+            url:"https://developers.zomato.com/api/v2.1/search?entity_id=278&entity_type=city&apikey=142b97a736485a30ff5b9a92ddbb8fde&sort=rating&count=2&order=des&establishment_type="+drinkType,
+            method:"GET"
+            }).done(function(response){
+                drink=response.restaurants;
+                var drinkList = $("<div>");
+                for(var i=0; i<drink.length;i++){
+                    drinkList.append("<div><p>"+drink[i].restaurant.name+"</p>"+"<p>"+drink[i].restaurant.location.address+"</p>"+"<img src='"+drink[i].restaurant.thumb+"'></div>"+"<br/>")
+                }
+                $("#DrinkSuggestionResults").append(drinkList);
+            });
+        }
+    }
+})
+
+function createDrinkButton(drink){
+    var button = $("<button>");
+    button.addClass("drinkButton");
+    button.addClass("unclicked");
+    button.attr("id",drink);
+    button.attr("data-state","unclicked");
+    button.html(drink);
+    $("#likeDrink").append(button);
+}
+
+
+// SUGGESTIONS APP SECTION===============================================================================
 });
