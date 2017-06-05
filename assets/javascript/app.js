@@ -282,7 +282,7 @@ function submit(){
 	    console.log(foodArray);
 	    console.log(drinksArray);
 		var preferences = signedIn.child("preferences")
-	   	preferences.update({
+	   	preferences.set({
 	   		food : foodArray,
 	   		drinks : drinksArray,
 	   		events : eventsArray
