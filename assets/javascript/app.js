@@ -29,11 +29,7 @@ function googleSignIn() {
 			  // The signed-in user info.
 			var user = result.user;
 			  // ...
-           
-			signedIn = ref.child(username) 
-        	signedIn.set({
-            name: username
-})
+            username = user.displayName;
             
 			loadMainPage()
 			}).catch(function(error) {
@@ -54,7 +50,8 @@ function facebookSignIn() {
 		  var token = result.credential.accessToken;
 		  // The signed-in user info.
 		  var user = result.user;
-		  
+		  username = user.displayName;
+           
 		  loadMainPage()
 		
         }).catch(function(error) {
@@ -96,9 +93,12 @@ firebase.auth().signOut().then(function() {
 firebase.auth().onAuthStateChanged(function(firebaseUser){
 	if(firebaseUser) {
        //USer is signed in
-	   username = firebaseUser.displayName;
-		userHtml.html("Welcome "+ username)
-
+		userHtml.html("Welcome "+ firebaseUser.displayName)
+		signedIn = ref.child(firebaseUser.displayName) 
+        signedIn.set({
+            name: firebaseUser.displayName,
+            email: firebaseUser.email
+})
 		// $(".name").html("<h2>Hi "+firebaseUser+"!</h2>")
 	} else {
 		console.log("not lgged In")
@@ -282,7 +282,7 @@ function submit(){
 	    console.log(foodArray);
 	    console.log(drinksArray);
 		var preferences = signedIn.child("preferences")
-	   	preferences.set({
+	   	preferences.push({
 	   		food : foodArray,
 	   		drinks : drinksArray,
 	   		events : eventsArray
