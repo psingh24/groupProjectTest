@@ -329,6 +329,7 @@ var foodType="";
 		console.log(foodCode)
 	});
 }
+initFoodAjax()
 function foodAjax() {
     foodType="";
     for(var i=0; i<foodCode.length;i++){
