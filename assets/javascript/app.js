@@ -92,8 +92,8 @@ function facebookSignIn() {
 	});
   }
 
-  $("#addUser").on("click", function() {
-	  loadMainPage()	  
+  $("#addUser").on("click", function(event) {
+	  event.preventDefault()
 	  createAccountWithEmailandPassword()
 	  signedIn = ref.child(displayName) 
         signedIn.set({
