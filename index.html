@@ -78,6 +78,8 @@
 <script type="text/javascript">
 // click login - load existing user prompt
 $("#login-button").on("click", function(){
+    $("#facebook-btn").addClass("login")
+    $("#google-btn").addClass("login")
 	$("#modal-login-label").html("Log in to see more");
 	$("#tagline").remove();
 	$("#nameInput").remove();

@@ -31,7 +31,7 @@ function googleSignIn() {
 			  // ...
             username = user.displayName;
             
-			loadMainPage()
+			// loadMainPage()
 			}).catch(function(error) {
 			  // Handle Errors here.
 			  var errorCode = error.code;
@@ -52,7 +52,7 @@ function facebookSignIn() {
 		  var user = result.user;
 		  username = user.displayName;
            
-		  loadMainPage()
+		//   loadMainPage()
 		
         }).catch(function(error) {
 			// Handle Errors here.
@@ -73,9 +73,11 @@ $(".signin").on("click", function(event) {
 	console.log("hello")
         if (method === "google") {
 		googleSignIn();
+		loadMainPage()
         }
 	else if(method === "facebook") {
 		facebookSignIn();
+		loadMainPage()
     } 
 })
 // Sign Out
@@ -435,4 +437,27 @@ function createDrinkButton(drink){
 
 
 // SUGGESTIONS APP SECTION===============================================================================
+
+
+
+
+// Login APP SECTION===============================================================================
+
+$(".login").on("click", function(event) {
+	event.preventDefault()
+	var method = $(this).attr("data")
+	console.log("hello")
+        if (method === "google") {
+		googleSignIn();
+        }
+	else if(method === "facebook") {
+		facebookSignIn();
+    } 
+
+})
+
+
+
+
+// Login APP SECTION===============================================================================
 });
