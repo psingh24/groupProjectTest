@@ -32,7 +32,7 @@ function googleSignIn() {
             userName = user.displayName;
             
 			loadMainPage()
-			saveUserInfo()
+		
 			}).catch(function(error) {
 			  // Handle Errors here.
 			  var errorCode = error.code;
@@ -54,7 +54,7 @@ function facebookSignIn() {
 		  userName = user.displayName;
            
 		  loadMainPage()
-		saveUserInfo()
+		
         }).catch(function(error) {
 			// Handle Errors here.
 			var errorCode = error.code;
@@ -283,6 +283,7 @@ function submit(){
 	    console.log(eventsArray);
 	    console.log(foodArray);
 	    console.log(drinksArray);
+		saveUserInfo()
 		var preferences = signedIn.child("preferences")
 	   	preferences.set({
 	   		food : foodArray,
