@@ -14,7 +14,7 @@ var username;
 
 var database = firebase.database();
 var ref = database.ref("user");
-var pref = database.ref("user/preferences");
+var pref = ref.child("preferences");
 
 // LOGIN SECTION==================================================================================
   //instance of the goggle provider object
