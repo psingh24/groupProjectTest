@@ -30,7 +30,7 @@ function googleSignIn() {
 			var user = result.user;
 			  // ...
             userName = user.displayName;
-            
+            saveUserInfo()
 			loadMainPage()
 			}).catch(function(error) {
 			  // Handle Errors here.
@@ -51,7 +51,7 @@ function facebookSignIn() {
 		  // The signed-in user info.
 		  var user = result.user;
 		  userName = user.displayName;
-           
+           saveUserInfo()
 		  loadMainPage()
 		
         }).catch(function(error) {
@@ -93,7 +93,7 @@ firebase.auth().signOut().then(function() {
 firebase.auth().onAuthStateChanged(function(firebaseUser){
 	if(firebaseUser) {
        //USer is signed in
-		userHtml.html("Welcome "+ userName)
+		userHtml.html("Welcome "+ firebaseUser.displayName)
 		// $(".name").html("<h2>Hi "+firebaseUser+"!</h2>")
 	} else {
 		console.log("not lgged In")
@@ -105,7 +105,7 @@ signedIn = ref.child(userName)
             name: userName
 })
 }
-saveUserInfo()
+
 function loadMainPage() {
      window.location = 'preferences.html';
  }
