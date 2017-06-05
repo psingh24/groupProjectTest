@@ -73,11 +73,11 @@ $(".signin").on("click", function(event) {
 	console.log("hello")
         if (method === "google") {
 		googleSignIn();
-		loadMainPage()
+		
         }
 	else if(method === "facebook") {
 		facebookSignIn();
-		loadMainPage()
+		
     } 
 })
 // Sign Out
