@@ -325,7 +325,7 @@ function submit(){
 	   		drinks : drinksArray,
 	   		events : eventsArray
 	   	});	   
-		   window.location = "suggestions.html"
+		   
 		foodAjax()
 
 	});
