@@ -31,7 +31,7 @@ function googleSignIn() {
 			  // ...
             username = user.displayName;
             
-			// loadMainPage()
+			loadMainPage()
 			}).catch(function(error) {
 			  // Handle Errors here.
 			  var errorCode = error.code;
@@ -52,7 +52,7 @@ function facebookSignIn() {
 		  var user = result.user;
 		  username = user.displayName;
            
-		//   loadMainPage()
+		  loadMainPage()
 		
         }).catch(function(error) {
 			// Handle Errors here.
