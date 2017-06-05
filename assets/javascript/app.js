@@ -96,10 +96,11 @@ function facebookSignIn() {
   $("#addUser").on("click", function(event) {
 	  event.preventDefault()
 	  createAccountWithEmailandPassword()
-	  
-	 
-	
-  })
+})
+
+$(".login").on("click", function(){
+	signInWithEmailAndPassword()
+})
 
 // SIGNUP ON CLICK
 $(".signin").on("click", function(event) {
