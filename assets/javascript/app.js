@@ -1,6 +1,6 @@
 $(document).ready(function(){
 var userHtml = $("#username");
-var username;
+var userName;
 //  Initialize Firebase
    var config = {
     apiKey: "AIzaSyCgQFFxv6-cd0vRQesrZUD447sO7AEYklo",
@@ -32,6 +32,7 @@ function googleSignIn() {
             username = user.displayName;
             
 			loadMainPage()
+			userHtml.html("Welcome "+ userName)
 			}).catch(function(error) {
 			  // Handle Errors here.
 			  var errorCode = error.code;
@@ -53,6 +54,7 @@ function facebookSignIn() {
 		  username = user.displayName;
            
 		  loadMainPage()
+		  userHtml.html("Welcome "+ userName)
 		
         }).catch(function(error) {
 			// Handle Errors here.
@@ -93,7 +95,6 @@ firebase.auth().signOut().then(function() {
 firebase.auth().onAuthStateChanged(function(firebaseUser){
 	if(firebaseUser) {
        //USer is signed in
-		userHtml.html("Welcome "+ firebaseUser.displayName)
 		signedIn = ref.child(firebaseUser.displayName) 
         signedIn.set({
             name: firebaseUser.displayName,
@@ -102,9 +103,13 @@ firebase.auth().onAuthStateChanged(function(firebaseUser){
 		// $(".name").html("<h2>Hi "+firebaseUser+"!</h2>")
 	} else {
 		console.log("not lgged In")
+		window.location = "index.html"
 	}
 })
 
+function welcomeUser() {
+	userHtml.html("Welcome "+ firebaseUser.displayName)
+}
 function loadMainPage() {
      window.location = 'preferences.html';
  }
@@ -281,6 +286,11 @@ function submit(){
 	    console.log(eventsArray);
 	    console.log(foodArray);
 	    console.log(drinksArray);
+		signedIn = ref.child(userName) 
+        signedIn.set({
+            name: userName,
+            email: firebaseUser.email
+		})
 		var preferences = signedIn.child("preferences")
 	   	preferences.set({
 	   		food : foodArray,
