@@ -1,6 +1,6 @@
 $(document).ready(function(){
 var userHtml = $("#username");
-var userName;
+var username;
 //  Initialize Firebase
    var config = {
     apiKey: "AIzaSyCgQFFxv6-cd0vRQesrZUD447sO7AEYklo",
@@ -29,10 +29,9 @@ function googleSignIn() {
 			  // The signed-in user info.
 			var user = result.user;
 			  // ...
-            userName = user.displayName;
+            username = user.displayName;
             
 			loadMainPage()
-		saveUserInfo()
 			}).catch(function(error) {
 			  // Handle Errors here.
 			  var errorCode = error.code;
@@ -51,10 +50,10 @@ function facebookSignIn() {
 		  var token = result.credential.accessToken;
 		  // The signed-in user info.
 		  var user = result.user;
-		  userName = user.displayName;
+		  username = user.displayName;
            
 		  loadMainPage()
-		saveUserInfo()
+		
         }).catch(function(error) {
 			// Handle Errors here.
 			var errorCode = error.code;
@@ -95,18 +94,16 @@ firebase.auth().onAuthStateChanged(function(firebaseUser){
 	if(firebaseUser) {
        //USer is signed in
 		userHtml.html("Welcome "+ firebaseUser.displayName)
+		signedIn = ref.child(firebaseUser.displayName) 
+        signedIn.set({
+            name: firebaseUser.displayName,
+            email: firebaseUser.email
+})
 		// $(".name").html("<h2>Hi "+firebaseUser+"!</h2>")
 	} else {
 		console.log("not lgged In")
 	}
 })
-function saveUserInfo() {
-signedIn = ref.child(userName) 
-        signedIn.set({
-            name: userName
-})
-submit();
-}
 
 function loadMainPage() {
      window.location = 'preferences.html';
@@ -295,7 +292,7 @@ function submit(){
 	});
 }
 
-// submit();
+submit();
 // MAIN APP SECTION===============================================================================
 
 
