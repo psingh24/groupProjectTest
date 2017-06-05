@@ -14,7 +14,7 @@ var username;
 
 var database = firebase.database();
 var ref = database.ref("user");
-var pref = ref.child("preferences");
+
 
 // LOGIN SECTION==================================================================================
   //instance of the goggle provider object
@@ -94,8 +94,7 @@ firebase.auth().onAuthStateChanged(function(firebaseUser){
 		userHtml.html("Welcome "+ firebaseUser.displayName) 
         ref.child(firebaseUser.displayName).set({
             name: firebaseUser.displayName,
-            email: firebaseUser.email,
-            likes: "blank"
+            email: firebaseUser.email
 })
 		// $(".name").html("<h2>Hi "+firebaseUser+"!</h2>")
 	} else {
@@ -273,7 +272,7 @@ function submit(){
 	    console.log(foodArray);
 	    console.log(drinksArray);
 
-	   	pref.update({
+	   	ref.child(firebaseUser.displayName).child("preferences").update({
 	   		food : foodArray,
 	   		drinks : drinksArray,
 	   		events : eventsArray
