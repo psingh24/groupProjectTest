@@ -14,7 +14,7 @@ var username;
 
 var database = firebase.database();
 var ref = database.ref("user");
-var reffs;
+var signedIn;
 
 // LOGIN SECTION==================================================================================
   //instance of the goggle provider object
@@ -92,8 +92,8 @@ firebase.auth().onAuthStateChanged(function(firebaseUser){
 	if(firebaseUser) {
        //USer is signed in
 		userHtml.html("Welcome "+ firebaseUser.displayName)
-		reffs = ref.child(firebaseUser.displayName) 
-        reffs.set({
+		signedIn = ref.child(firebaseUser.displayName) 
+        signedIn.set({
             name: firebaseUser.displayName,
             email: firebaseUser.email
 })
@@ -272,8 +272,8 @@ function submit(){
 	    console.log(eventsArray);
 	    console.log(foodArray);
 	    console.log(drinksArray);
-		var refffs = reffs.child("preferences")
-	   	refffs.update({
+		var preferences = signedIn.child("preferences")
+	   	preferences.update({
 	   		food : foodArray,
 	   		drinks : drinksArray,
 	   		events : eventsArray
