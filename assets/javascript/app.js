@@ -113,6 +113,13 @@ function loadMainPage() {
      window.location = 'index.html';
  }
 
+  function loadReturnUser() {
+     window.location = 'user.html';
+
+	 $(".userPage").append("<h2>Hello</h2>")
+ }
+
+
 
 // var ref = firebase.database().ref("user");
 // ref.once("value")
@@ -449,9 +456,11 @@ $(".login").on("click", function(event) {
 	console.log("hello")
         if (method === "google") {
 		googleSignIn();
+		loadReturnUser()
         }
 	else if(method === "facebook") {
 		facebookSignIn();
+		loadReturnUser()
     } 
 
 })
