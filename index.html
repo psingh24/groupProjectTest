@@ -70,6 +70,37 @@
     			</div>
     		</div>
     </div>
+
+<div id="modal-sigin">
+    		<div class="modal-content">
+    			<div class="modal-header">
+    				<img id="login-logo" src="assets/images/orangehat.png" alt="All Y'all logo">
+    			</div>
+    			<div class="modal-body">
+                    <form role="form">
+						<div class="form-group">
+							<input type="email" class="form-control" id="emailInput" placeholder="Email">
+						</div>
+						<div id="form-redo" class="form-group">
+							<input type="password" class="form-control" id="createPasswordInput" placeholder="Create a password">
+						</div>
+						<button type="submit" class="login btn btn-default">Continue</button>
+						<hr>
+						<div class="row">
+							<div class="col-md-12 text-center">
+								<button id="facebook-btn" type="submit" data="facebook" class="signin btn btn-primary"><i class="fa fa fa-facebook" aria-hidden="true"></i> Sign up with Facebook</button>
+								<button id="google-btn" type="submit" data="google" class="signin btn btn-danger"><i class="fa fa-google-plus" aria-hidden="true"></i> Sign up with Google</button>
+							</div>
+						</div>
+					</form> 
+    			</div>
+    		</div>
+    </div>
+
+
+
+
+
 </div>    
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -78,16 +109,8 @@
 <script type="text/javascript">
 // click login - load existing user prompt
 $("#login-button").on("click", function(){
-    $(".addUser").addClass("login")
-    $(".addUser").removeClass("addUser")
-    $("#facebook-btn").addClass("login")
-    $("#google-btn").addClass("login")
-	$("#modal-login-label").html("Log in to see more");
-	$("#tagline").remove();
-	$("#nameInput").remove();
-	$("#form-redo").html('<input type="password" class="form-control" id="PasswordInput" placeholder="Password">')
-	$("#facebook-btn").html('<i class="fa fa fa-facebook" aria-hidden="true"></i> Sign in with Facebook')
-	$("#google-btn").html('<i class="fa fa-google-plus" aria-hidden="true"></i> Sign in with Google</button>')
+    $("#modal-login").hide()
+    $("#modal-signin").show()
 })
 
 
