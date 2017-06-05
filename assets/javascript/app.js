@@ -30,8 +30,9 @@ function googleSignIn() {
 			var user = result.user;
 			  // ...
             userName = user.displayName;
-            saveUserInfo()
+            
 			loadMainPage()
+			saveUserInfo()
 			}).catch(function(error) {
 			  // Handle Errors here.
 			  var errorCode = error.code;
@@ -51,9 +52,9 @@ function facebookSignIn() {
 		  // The signed-in user info.
 		  var user = result.user;
 		  userName = user.displayName;
-           saveUserInfo()
+           
 		  loadMainPage()
-		
+		saveUserInfo()
         }).catch(function(error) {
 			// Handle Errors here.
 			var errorCode = error.code;
