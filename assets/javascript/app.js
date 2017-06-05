@@ -29,7 +29,7 @@ function googleSignIn() {
 			  // The signed-in user info.
 			var user = result.user;
 			  // ...
-            username = user.displayName;
+           
             
 			loadMainPage()
 			}).catch(function(error) {
@@ -50,7 +50,7 @@ function facebookSignIn() {
 		  var token = result.credential.accessToken;
 		  // The signed-in user info.
 		  var user = result.user;
-		  username = user.displayName;
+		
            
 		  loadMainPage()
 		
@@ -93,6 +93,8 @@ firebase.auth().signOut().then(function() {
 firebase.auth().onAuthStateChanged(function(firebaseUser){
 	if(firebaseUser) {
        //USer is signed in
+
+	   username = firebaseUser.displayName
 		userHtml.html("Welcome "+ firebaseUser.displayName)
 		signedIn = ref.child(firebaseUser.displayName) 
         signedIn.set({
@@ -314,30 +316,32 @@ var drinksBanner = "<div class='container'><div class='row'><div class='col-md-1
 
 // $(".suggestionsContainer").append(mainBanner+foodBanner+resultContainer+drinksBanner+resultContainer)
 
-
+var foodCode=[];
 function initFoodAjax() {
-	var foodCode=[];
+
 var foodType="";
 		$.ajax({
 		url:"https://developers.zomato.com/api/v2.1/cuisines?city_id=278&apikey=142b97a736485a30ff5b9a92ddbb8fde",
 		method:"GET"
 		}).done(function(response){
 		foodCode=response.cuisines;
+		console.log(foodCode)
 	});
 }
 function foodAjax() {
-	initFoodAjax()
     foodType="";
     for(var i=0; i<foodCode.length;i++){
         if(foodArray.indexOf(foodCode[i].cuisine.cuisine_name.toUpperCase())>-1){
             foodType=foodType+"%2C"+foodCode[i].cuisine.cuisine_id.toString();
         }
+		console.log(foodType)
     }
     $.ajax({
     url:"https://developers.zomato.com/api/v2.1/search?entity_id=278&entity_type=city&apikey=142b97a736485a30ff5b9a92ddbb8fde&count=4&sort=rating&order=desc&cuisines="+foodType,
     method:"GET"
     }).done(function(response){
         var restaurants=response.restaurants;
+		console.log(restaurants)
         for(var i=0; i<restaurants.length;i++){
 
             $(".suggestionsContainer").append(mainBanner+foodBanner+"<div class='row'><div class='col-md-12'><div class='row'><div class='col-md-6 suggestions-list-items'><div class='col-md-6'><a href='#'><img class='thumbnail-suggestions' src='"+restaurants[i].restaurant.thumb+"' alt='test'></a></div><div class='col-md-6'><h2 class='suggestions-h2'>"+estaurants[i].restaurant.name+"</h2><h4>"+restaurants[i].restaurant.location.address+"</h4><br/><p><a class='btn btn-site btn-lg' href='#' id='infoBtn' role='button' data-toggle='modal' data-target='#myModalInfo'>More Info</a></p></div></div></div></div></div>")
