@@ -1,6 +1,6 @@
 $(document).ready(function(){
 var userHtml = $("#username");
-var username;
+var userName;
 //  Initialize Firebase
    var config = {
     apiKey: "AIzaSyCgQFFxv6-cd0vRQesrZUD447sO7AEYklo",
@@ -29,7 +29,7 @@ function googleSignIn() {
 			  // The signed-in user info.
 			var user = result.user;
 			  // ...
-            username = user.displayName;
+            userName = user.displayName;
             
 			loadMainPage()
 			}).catch(function(error) {
@@ -50,7 +50,7 @@ function facebookSignIn() {
 		  var token = result.credential.accessToken;
 		  // The signed-in user info.
 		  var user = result.user;
-		  username = user.displayName;
+		  userName = user.displayName;
            
 		  loadMainPage()
 		
