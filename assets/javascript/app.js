@@ -29,12 +29,12 @@ function createAccountWithEmailandPassword() {
 	var password = $("#createPasswordInput").val().trim();
 
 	firebase.auth().createUserWithEmailAndPassword(email, password)
-
+	loadMainPage()
 	.then(function(user) {
 		user.updateProfile({displayName: displayName})
 		console.log(displayName)
 	})
-	 loadMainPage()
+
 }
 
 function signInWithEmailAndPassword() {
@@ -42,6 +42,7 @@ function signInWithEmailAndPassword() {
 	var password = $("#createPasswordInput").val().trim();
 
 	firebase.auth().signInWithEmailAndPassword(email, password)
+	
 			 
 }
 
