@@ -22,6 +22,27 @@ var google = new firebase.auth.GoogleAuthProvider();
 var facebook = new firebase.auth.FacebookAuthProvider();
 
 // GOOGLE SIGNIN
+
+function createAccountWithEmailandPassword() {
+	var displayName = $("#nameInput").val().trim();
+	var email = $("#emailInput").val().trim();
+	var password = $("#createPasswordInput").val().trim();
+
+	firebase.auth().createUserWithEmailAndPassword(email, password)
+	.then(function(user) {
+		user.updateProfile({displayName: displayName})
+	})
+}
+
+function signInWithEmailAndPassword() {
+	var email = $("#emailInput").val().trim();
+	var password = $("#createPasswordInput").val().trim();
+
+	firebase.auth().signInWithEmailAndPassword(email, password)
+			  loadMainPage()
+}
+
+
 function googleSignIn() {
 	firebase.auth().signInWithPopup(google).then(function(result) {
 			// This gives you a Google Access Token. You can use it to access the Google API.
@@ -65,6 +86,11 @@ function facebookSignIn() {
 			// ...
 	});
   }
+
+  $("#addUser").on("click", function() {
+	  createAccountWithEmailandPassword()
+		signInWithEmailAndPassword() 
+  })
 
 // SIGNUP ON CLICK
 $(".signin").on("click", function(event) {
