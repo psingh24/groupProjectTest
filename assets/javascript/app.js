@@ -33,6 +33,7 @@ function createAccountWithEmailandPassword() {
 	.then(function(user) {
 		user.updateProfile({displayName: displayName})
 		console.log(displayName)
+		loadMainPage()
 	
 	})
 
@@ -95,7 +96,7 @@ function facebookSignIn() {
   $("#addUser").on("click", function(event) {
 	  event.preventDefault()
 	  createAccountWithEmailandPassword()
-	  loadMainPage()
+	  
 	 
 	
   })
