@@ -29,7 +29,7 @@ function createAccountWithEmailandPassword() {
 	var password = $("#createPasswordInput").val().trim();
 
 	firebase.auth().createUserWithEmailAndPassword(email, password)
-	 loadMainPage()
+	 
 	
 	.then(function(user) {
 		user.updateProfile({displayName: displayName})
@@ -96,6 +96,7 @@ function facebookSignIn() {
   $("#addUser").on("click", function(event) {
 	  event.preventDefault()
 	  createAccountWithEmailandPassword()
+	  loadMainPage()
 })
 	
   })
