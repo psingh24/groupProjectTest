@@ -344,7 +344,7 @@ function foodAjax() {
 		console.log(restaurants)
         for(var i=0; i<restaurants.length;i++){
 
-            $(".suggestionsContainer").append(mainBanner+foodBanner+"<div class='row'><div class='col-md-12'><div class='row'><div class='col-md-6 suggestions-list-items'><div class='col-md-6'><a href='#'><img class='thumbnail-suggestions' src='"+restaurants[i].restaurant.thumb+"' alt='test'></a></div><div class='col-md-6'><h2 class='suggestions-h2'>"+estaurants[i].restaurant.name+"</h2><h4>"+restaurants[i].restaurant.location.address+"</h4><br/><p><a class='btn btn-site btn-lg' href='#' id='infoBtn' role='button' data-toggle='modal' data-target='#myModalInfo'>More Info</a></p></div></div></div></div></div>")
+            $(".suggestionsContainer").append(mainBanner+foodBanner+"<div class='row'><div class='col-md-12'><div class='row'><div class='col-md-6 suggestions-list-items'><div class='col-md-6'><a href='#'><img class='thumbnail-suggestions' src='"+restaurants[i].restaurant.thumb+"' alt='test'></a></div><div class='col-md-6'><h2 class='suggestions-h2'>"+restaurants[i].restaurant.name+"</h2><h4>"+restaurants[i].restaurant.location.address+"</h4><br/><p><a class='btn btn-site btn-lg' href='#' id='infoBtn' role='button' data-toggle='modal' data-target='#myModalInfo'>More Info</a></p></div></div></div></div></div>")
         }
         $("#foodSuggestionResults").html(restaurantList);
 
