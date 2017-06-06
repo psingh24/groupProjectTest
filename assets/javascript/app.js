@@ -329,7 +329,7 @@ function submit(){
 	    console.log(foodArray);
 	    console.log(drinksArray);
 		// var preferences = signedIn.child("preferences")
-	   database.ref(username).update({
+	   database.ref(username).set({
 	   		food : foodArray,
 	   		drinks : drinksArray,
 	   		events : eventsArray
@@ -339,6 +339,10 @@ function submit(){
 
 	});
 }
+
+var onValueChange = ref.on('value', function(dataSnapshot) { 
+	console.log(dataSnapshot)
+});
 
 submit();
 // MAIN APP SECTION===============================================================================
