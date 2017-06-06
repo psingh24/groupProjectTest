@@ -134,7 +134,7 @@ firebase.auth().onAuthStateChanged(function(firebaseUser){
 	   username = firebaseUser.displayName
 		userHtml.html("Welcome "+ firebaseUser.displayName)
 		signedIn = ref.child(firebaseUser.displayName) 
-        signedIn.set({
+        signedIn.update({
             name: firebaseUser.displayName,
             email: firebaseUser.email
 })
