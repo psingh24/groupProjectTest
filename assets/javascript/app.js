@@ -341,7 +341,7 @@ function submit(){
 }
 
 var onValueChange = ref.on('value', function(dataSnapshot) { 
-	console.log(dataSnapshot)
+	console.log(dataSnapshot.val())
 });
 
 submit();
