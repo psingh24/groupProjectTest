@@ -329,7 +329,7 @@ function submit(){
 	    console.log(foodArray);
 	    console.log(drinksArray);
 		// var preferences = signedIn.child("preferences")
-	   database.ref().update({
+	   database.ref(username).update({
 	   		food : foodArray,
 	   		drinks : drinksArray,
 	   		events : eventsArray
