@@ -144,6 +144,12 @@ firebase.auth().onAuthStateChanged(function(firebaseUser){
 	}
 })
 
+
+
+
+
+
+
 function loadMainPage() {
      window.location = 'preferences.html';
  }
@@ -322,8 +328,8 @@ function submit(){
 	    console.log(eventsArray);
 	    console.log(foodArray);
 	    console.log(drinksArray);
-		var preferences = signedIn.child("preferences")
-	   	preferences.update({
+		// var preferences = signedIn.child("preferences")
+	   database.ref().update({
 	   		food : foodArray,
 	   		drinks : drinksArray,
 	   		events : eventsArray
