@@ -320,8 +320,8 @@ function submit(){
 	    console.log(eventsArray);
 	    console.log(foodArray);
 	    console.log(drinksArray);
-		var preferences = signedIn.child("preferences")
-	   	preferences.set({
+		// var preferences = signedIn.child("preferences")
+	   	ref.set({
 	   		food : foodArray,
 	   		drinks : drinksArray,
 	   		events : eventsArray
