@@ -15,7 +15,7 @@ var username;
 var database = firebase.database();
 var ref = database.ref("user");
 var signedIn;
-var preferences = signedIn.child("preferences")
+// var preferences = signedIn.child("preferences")
 // LOGIN SECTION==================================================================================
   //instance of the goggle provider object
 var google = new firebase.auth.GoogleAuthProvider();
