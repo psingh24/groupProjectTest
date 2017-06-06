@@ -15,7 +15,7 @@ var username;
 var database = firebase.database();
 var ref = database.ref("user");
 var signedIn;
-
+var preferences = signedIn.child("preferences")
 // LOGIN SECTION==================================================================================
   //instance of the goggle provider object
 var google = new firebase.auth.GoogleAuthProvider();
@@ -134,10 +134,10 @@ firebase.auth().onAuthStateChanged(function(firebaseUser){
 	   username = firebaseUser.displayName
 		userHtml.html("Welcome "+ firebaseUser.displayName)
 		signedIn = ref.child(firebaseUser.displayName) 
-        signedIn.update({
-            name: firebaseUser.displayName,
-            email: firebaseUser.email
-})
+//         signedIn.update({
+//             name: firebaseUser.displayName,
+//             email: firebaseUser.email
+// })
 		// $(".name").html("<h2>Hi "+firebaseUser+"!</h2>")
 	} else {
 		console.log("not lgged In")
