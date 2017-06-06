@@ -133,11 +133,11 @@ firebase.auth().onAuthStateChanged(function(firebaseUser){
 
 	   username = firebaseUser.displayName
 		userHtml.html("Welcome "+ firebaseUser.displayName)
-		// signedIn = ref.child(firebaseUser.displayName) 
-//         signedIn.update({
-//             name: firebaseUser.displayName,
-//             email: firebaseUser.email
-// })
+		signedIn = ref.child(firebaseUser.displayName) 
+        signedIn.set({
+            name: firebaseUser.displayName,
+            email: firebaseUser.email
+})
 		// $(".name").html("<h2>Hi "+firebaseUser+"!</h2>")
 	} else {
 		console.log("not lgged In")
@@ -314,13 +314,15 @@ food();
 drinks();
 events();
 
+
+//Submit food to firebase
 function submit(){
 	$("#submitBtn").on("click", function(event){
 		event.preventDefault();
 	    console.log(eventsArray);
 	    console.log(foodArray);
 	    console.log(drinksArray);
-		// var preferences = signedIn.child("preferences")
+		var preferences = signedIn.child("preferences")
 	   	ref.set({
 	   		food : foodArray,
 	   		drinks : drinksArray,
