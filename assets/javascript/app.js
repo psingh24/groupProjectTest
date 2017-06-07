@@ -343,11 +343,6 @@ function submit(){
 	    console.log(foodArray);
 	    console.log(drinksArray);
 
-		var JSONreadyArray = JSON.stringify(username);
-
-		localStorage.setItem("name", JSONreadyArray);
-
-		console.log(JSON.parse(localStorage['name']))
 		
 		// var preferences = signedIn.child("preferences")
 	   database.ref(username).set({
@@ -363,6 +358,11 @@ function submit(){
 	});
 }
 // console.log(JSON.parse(localStorage['name']))
+var JSONreadyArray = JSON.stringify(username);
+
+		localStorage.setItem("name", JSONreadyArray);
+
+		console.log(JSON.parse(localStorage['name']))
 
 	$("#usernameSuggestions").html(JSON.parse(localStorage['name'])+"'s Suggestions" )
 
