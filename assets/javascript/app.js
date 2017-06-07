@@ -156,7 +156,6 @@ firebase.auth().onAuthStateChanged(function(firebaseUser){
 
 function loadMainPage() {
      window.location = 'preferences.html';
-	 localStorage.clear();
 	 
  }
 
