@@ -173,7 +173,7 @@ function loadMainPage() {
      window.location.href = 'suggestions.html';
 
 	
-	  $(".suggestionsContainer").html("<h2>"+JSON.parse(localStorage['name'])+"</h2>")
+	 
  }
 
 
@@ -359,9 +359,9 @@ function submit(){
 
 	});
 }
+console.log(JSON.parse(localStorage['name']))
 
-
-
+ $(".suggestionsContainer").html("<h2>"+JSON.parse(localStorage['name'])+"</h2>")
 submit();
 // MAIN APP SECTION===============================================================================
 
