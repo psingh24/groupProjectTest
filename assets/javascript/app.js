@@ -362,7 +362,7 @@ function submit(){
 
 	});
 }
-console.log(JSON.parse(localStorage['name']))
+// console.log(JSON.parse(localStorage['name']))
 function displayNameLocalStorage() {
 	$("#usernameSuggestions").html(JSON.parse(localStorage['name'])+"'s Suggestions" )
 
