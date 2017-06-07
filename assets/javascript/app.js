@@ -42,6 +42,7 @@ function createAccountWithEmailandPassword() {
 function signInWithEmailAndPassword() {
 	var email = $("#emailInput").val().trim();
 	var password = $("#createPasswordInput").val().trim();
+	console.log("hello")
 
 	firebase.auth().signInWithEmailAndPassword(email, password)
 	
@@ -98,9 +99,11 @@ $(".addUser").on("click", function(event) {
 	  createAccountWithEmailandPassword()
 })
 
-$(".loggingin").on("click", function(){
-	signInWithEmailAndPassword()
-})
+
+$(document).on("click", ".loggingin", signInWithEmailAndPassword)
+// $(".loggingin").on("click", function(){
+// 	signInWithEmailAndPassword()
+// })
 
 // SIGNUP ON CLICK
 $(".signin").on("click", function(event) {
