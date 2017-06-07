@@ -358,6 +358,7 @@ function submit(){
 		   
 		initFoodAjax()
 		loadSuggestionPage()
+		$("#usernameSuggestions").html(JSON.parse(localStorage['name'])+"'s Suggestions" )
 
 	});
 }
