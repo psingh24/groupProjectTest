@@ -134,6 +134,7 @@ firebase.auth().onAuthStateChanged(function(firebaseUser){
 	   username = firebaseUser.displayName
 	   JSONreadyArray = JSON.stringify(username);
 	   localStorage.setItem("name", JSONreadyArray);
+	   $("#usernameSuggestions").html(JSON.parse(localStorage['name'])+"'s Suggestions" )
 		userHtml.html("Welcome "+ firebaseUser.displayName)
 		signedIn = ref.child(firebaseUser.displayName) 
         signedIn.update({
@@ -366,7 +367,7 @@ function submit(){
 
 		
 
-	$("#usernameSuggestions").html(JSON.parse(localStorage['name'])+"'s Suggestions" )
+	
 
 
 // displayNameLocalStorage()
