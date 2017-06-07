@@ -22,9 +22,9 @@ var google = new firebase.auth.GoogleAuthProvider();
 var facebook = new firebase.auth.FacebookAuthProvider();
 
 // GOOGLE SIGNIN
-var displayName;
+
 function createAccountWithEmailandPassword() {
-	displayName = $("#nameInput").val().trim();
+	var displayName = $("#nameInput").val().trim();
 	var email = $("#emailInput").val().trim();
 	var password = $("#createPasswordInput").val().trim();
 
@@ -376,6 +376,16 @@ function submit(){
 //  $(".suggestionsContainer").html("<h2>"+JSON.parse(localStorage['name'])+"</h2>")
 //  userHtml.html("<h2>"+JSON.parse(localStorage['name'])+"</h2>")
 submit();
+
+var foods;
+// ref.on("value", function(snapshot) {
+//   console.log(snapshot.val());
+// }, function (errorObject) {
+//   console.log("The read failed: " + errorObject.code);
+// });
+
+
+
 // MAIN APP SECTION===============================================================================
 
 
