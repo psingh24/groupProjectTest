@@ -333,7 +333,7 @@ function events() {
 food();
 drinks();
 events();
-localStorage.clear()
+
 
 //Submit food to firebase
 function submit(){
