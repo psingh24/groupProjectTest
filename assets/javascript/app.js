@@ -346,6 +346,7 @@ function submit(){
 		localStorage.setItem("name", JSONreadyArray);
 
 		console.log(JSON.parse(localStorage['name']))
+		
 		// var preferences = signedIn.child("preferences")
 	   database.ref(username).set({
 	   		food : foodArray,
@@ -354,6 +355,7 @@ function submit(){
 	   	});	   
 		   
 		initFoodAjax()
+		loadSuggestionPage()
 
 	});
 }
