@@ -93,7 +93,7 @@ function facebookSignIn() {
 	});
   }
 
-  $(".addUser").on("click", function(event) {
+$("#addUser").on("click", function(event) {
 	  event.preventDefault()
 	  createAccountWithEmailandPassword()
 })
