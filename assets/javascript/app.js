@@ -171,11 +171,12 @@ function loadMainPage() {
    function loadSuggestionPage() {
      window.location.href = 'suggestions.html';
 
-	
+	$("#usernameSuggestions").html(JSON.parse(localStorage['name'])+"'s Suggestions" )
+
 	 
  }
 
- $("#usernameSuggestions").html(JSON.parse(localStorage['name'])+"'s Suggestions" )
+//  $("#usernameSuggestions").html(JSON.parse(localStorage['name'])+"'s Suggestions" )
 
 
 
