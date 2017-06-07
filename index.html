@@ -59,6 +59,7 @@
 							<input type="password" class="form-control" id="createPasswordInput" placeholder="Create a password">
 						</div>
 						<button type="submit" class="loginBtn addUser btn btn-default">Continue</button>
+                        <button type="submit" class="loginBtn hide btn btn-default">Login</button>
 						<hr>
 						<div class="row">
 							<div class="col-md-12 text-center">
@@ -81,14 +82,13 @@
 
 // click login - load existing user prompt
 $("#login-button").on("click", function(){
+    $("loginBtn").show()
 	$("#modal-login-label").html("Log in to see more");
 	$("#tagline").remove();
 	$("#nameInput").remove();
 	$("#form-redo").html('<input type="password" class="form-control" id="PasswordInput" placeholder="Password">')
 	$("#facebook-btn").html('<i class="fa fa fa-facebook" aria-hidden="true"></i> Sign in with Facebook')
 	$("#google-btn").html('<i class="fa fa-google-plus" aria-hidden="true"></i> Sign in with Google</button>')
-    $(".loginBtn").addClass("loggingin")
-    $(".loginBtn").removeClass("addUser")
 })
 
 
