@@ -156,18 +156,25 @@ firebase.auth().onAuthStateChanged(function(firebaseUser){
 
 function loadMainPage() {
      window.location = 'preferences.html';
-	 localStorage.setItem("username", username);
+	 localStorage.clear();
+	 
  }
 
   function loadLoginPage() {
      window.location = 'index.html';
-	 localStorage.setItem("username", username);
+	
  }
 
   function loadReturnUser() {
      window.location = 'user.html';
 
-	 $(".userPage").append("<h2>Hello</h2>")
+	 
+ }
+   function loadSuggestionPage() {
+     window.location = 'suggestions.html';
+
+	 $(".suggestionsContainer").html("<h2>"+JSON.parse(localStorage['name'])+"</h2>")
+	 localStorage.clear();
  }
 
 
@@ -347,7 +354,7 @@ function submit(){
 	   		events : eventsArray
 	   	});	   
 		   
-		foodAjax()
+		initFoodAjax()
 
 	});
 }
@@ -386,9 +393,10 @@ var foodType="";
 		}).done(function(response){
 		foodCode=response.cuisines;
 		console.log(foodCode)
+		foodAjax() 
 	});
 }
-initFoodAjax()
+
 function foodAjax() {
     foodType="";
     for(var i=0; i<foodCode.length;i++){
