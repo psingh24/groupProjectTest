@@ -132,10 +132,12 @@ firebase.auth().onAuthStateChanged(function(firebaseUser){
 	   console.log(firebaseUser)
 
 	   username = firebaseUser.displayName
-	   JSONreadyArray = JSON.stringify(username);
-	   localStorage.setItem("name", JSONreadyArray);
-	   $("#usernameSuggestions").html(JSON.parse(localStorage['name'])+"'s Suggestions" )
+	//    JSONreadyArray = JSON.stringify(username);
+	//    localStorage.setItem("name", JSONreadyArray);
+	//    $("#usernameSuggestions").html(JSON.parse(localStorage['name'])+"'s Suggestions" )
+	  
 		userHtml.html("Welcome "+ firebaseUser.displayName)
+		 $("#usernameSuggestions").html(firebaseUser.displayName+"'s Suggestions" )
 		signedIn = ref.child(firebaseUser.displayName) 
         signedIn.update({
             name: firebaseUser.displayName,
