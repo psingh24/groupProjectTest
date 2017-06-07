@@ -173,7 +173,7 @@ function loadMainPage() {
      window.location.href = 'suggestions.html';
 
 	
-	 
+	 userHtml.html(username+"'s Suggestions" )
  }
 
 
