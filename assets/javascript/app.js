@@ -173,8 +173,10 @@ function loadMainPage() {
      window.location.href = 'suggestions.html';
 
 	
-	 $("#usernameSuggestions").html(username+"'s Suggestions" )
+	 
  }
+
+ $("#usernameSuggestions").html(username+"'s Suggestions" )
 
 
 
