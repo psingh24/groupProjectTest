@@ -93,12 +93,12 @@ function facebookSignIn() {
 	});
   }
 
-$("#addUser").on("click", function(event) {
+$(".addUser").on("click", function(event) {
 	  event.preventDefault()
 	  createAccountWithEmailandPassword()
 })
 
-$(".login").on("click", function(){
+$(".loggingin").on("click", function(){
 	signInWithEmailAndPassword()
 })
 
