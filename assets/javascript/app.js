@@ -138,6 +138,7 @@ firebase.auth().onAuthStateChanged(function(firebaseUser){
             name: firebaseUser.displayName,
             email: firebaseUser.email
 })
+
 		// $(".name").html("<h2>Hi "+firebaseUser+"!</h2>")
 	} else {
 		console.log("not lgged In")
@@ -150,12 +151,17 @@ firebase.auth().onAuthStateChanged(function(firebaseUser){
 
 
 
+
+
+
 function loadMainPage() {
      window.location = 'preferences.html';
+	 localStorage.setItem("username", username);
  }
 
   function loadLoginPage() {
      window.location = 'index.html';
+	 localStorage.setItem("username", username);
  }
 
   function loadReturnUser() {
@@ -328,6 +334,12 @@ function submit(){
 	    console.log(eventsArray);
 	    console.log(foodArray);
 	    console.log(drinksArray);
+
+		var JSONreadyArray = JSON.stringify(username);
+
+		localStorage.setItem("name", JSONreadyArray);
+
+		console.log(JSON.parse(localStorage['name']))
 		// var preferences = signedIn.child("preferences")
 	   database.ref(username).set({
 	   		food : foodArray,
@@ -340,9 +352,7 @@ function submit(){
 	});
 }
 
-var onValueChange = ref.on('value', function(dataSnapshot) { 
-	console.log(dataSnapshot.val())
-});
+
 
 submit();
 // MAIN APP SECTION===============================================================================
