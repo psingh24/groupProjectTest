@@ -333,7 +333,7 @@ function events() {
 food();
 drinks();
 events();
-
+localStorage.clear()
 
 //Submit food to firebase
 function submit(){
@@ -358,13 +358,18 @@ function submit(){
 		   
 		initFoodAjax()
 		loadSuggestionPage()
-		$("#usernameSuggestions").html(JSON.parse(localStorage['name'])+"'s Suggestions" )
+		
 
 	});
 }
 console.log(JSON.parse(localStorage['name']))
+function displayNameLocalStorage() {
+	$("#usernameSuggestions").html(JSON.parse(localStorage['name'])+"'s Suggestions" )
 
- $(".suggestionsContainer").html("<h2>"+JSON.parse(localStorage['name'])+"</h2>")
+	localStorage.clear()
+}
+displayNameLocalStorage()
+//  $(".suggestionsContainer").html("<h2>"+JSON.parse(localStorage['name'])+"</h2>")
 //  userHtml.html("<h2>"+JSON.parse(localStorage['name'])+"</h2>")
 submit();
 // MAIN APP SECTION===============================================================================
