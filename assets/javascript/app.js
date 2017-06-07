@@ -172,8 +172,8 @@ function loadMainPage() {
    function loadSuggestionPage() {
      window.location = 'suggestions.html';
 
-	 $(".suggestionsContainer").html("<h2>"+JSON.parse(localStorage['name'])+"</h2>")
-	 localStorage.clear();
+	
+	 
  }
 
 
