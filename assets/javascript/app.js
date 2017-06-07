@@ -362,7 +362,7 @@ function submit(){
 console.log(JSON.parse(localStorage['name']))
 
  $(".suggestionsContainer").html("<h2>"+JSON.parse(localStorage['name'])+"</h2>")
- userHtml.html("<h2>"+JSON.parse(localStorage['name'])+"</h2>")
+//  userHtml.html("<h2>"+JSON.parse(localStorage['name'])+"</h2>")
 submit();
 // MAIN APP SECTION===============================================================================
 
