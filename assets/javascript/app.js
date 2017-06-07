@@ -359,7 +359,7 @@ function submit(){
 		initFoodAjax()
 		loadSuggestionPage()
 		
-
+displayNameLocalStorage()
 	});
 }
 // console.log(JSON.parse(localStorage['name']))
@@ -368,7 +368,7 @@ function displayNameLocalStorage() {
 
 	localStorage.clear()
 }
-displayNameLocalStorage()
+// displayNameLocalStorage()
 //  $(".suggestionsContainer").html("<h2>"+JSON.parse(localStorage['name'])+"</h2>")
 //  userHtml.html("<h2>"+JSON.parse(localStorage['name'])+"</h2>")
 submit();
