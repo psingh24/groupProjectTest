@@ -125,13 +125,15 @@ firebase.auth().signOut().then(function() {
   // An error happened.
 });
 })
-
+var JSONreadyArray;
 firebase.auth().onAuthStateChanged(function(firebaseUser){
 	if(firebaseUser) {
        //USer is signed in
 	   console.log(firebaseUser)
 
 	   username = firebaseUser.displayName
+	   JSONreadyArray = JSON.stringify(username);
+	   localStorage.setItem("name", JSONreadyArray);
 		userHtml.html("Welcome "+ firebaseUser.displayName)
 		signedIn = ref.child(firebaseUser.displayName) 
         signedIn.update({
@@ -358,11 +360,11 @@ function submit(){
 	});
 }
 // console.log(JSON.parse(localStorage['name']))
-var JSONreadyArray = JSON.stringify(username);
 
-		localStorage.setItem("name", JSONreadyArray);
 
-		console.log(JSON.parse(localStorage['name']))
+		
+
+		
 
 	$("#usernameSuggestions").html(JSON.parse(localStorage['name'])+"'s Suggestions" )
 
