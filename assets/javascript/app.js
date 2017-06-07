@@ -366,7 +366,7 @@ displayNameLocalStorage()
 function displayNameLocalStorage() {
 	$("#usernameSuggestions").html(JSON.parse(localStorage['name'])+"'s Suggestions" )
 
-	localStorage.clear()
+
 }
 // displayNameLocalStorage()
 //  $(".suggestionsContainer").html("<h2>"+JSON.parse(localStorage['name'])+"</h2>")
