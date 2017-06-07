@@ -138,11 +138,6 @@ firebase.auth().onAuthStateChanged(function(firebaseUser){
             name: firebaseUser.displayName,
             email: firebaseUser.email
 })
-
-if (window.location.href = 'suggestions.html') {
-$("usernameSuggestions").html(firebaseUser.displayName+"'s Suggestions")
-}
-
 		// $(".name").html("<h2>Hi "+firebaseUser+"!</h2>")
 	} else {
 		console.log("not lgged In")
@@ -180,7 +175,7 @@ function loadMainPage() {
 	 
  }
 
-//  $("#usernameSuggestions").html(JSON.parse(localStorage['name'])+"'s Suggestions" )
+ $("#usernameSuggestions").html(JSON.parse(localStorage['name'])+"'s Suggestions" )
 
 
 
