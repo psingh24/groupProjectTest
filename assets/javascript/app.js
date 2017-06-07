@@ -155,25 +155,25 @@ firebase.auth().onAuthStateChanged(function(firebaseUser){
 
 
 function loadMainPage() {
-     window.location = 'preferences.html';
+     window.location.href = 'preferences.html';
 	 
  }
 
   function loadLoginPage() {
-     window.location = 'index.html';
+     window.location.href = 'index.html';
 	
  }
 
   function loadReturnUser() {
-     window.location = 'user.html';
+     window.location.href = 'user.html';
 
 	 
  }
    function loadSuggestionPage() {
-     window.location = 'suggestions.html';
+     window.location.href = 'suggestions.html';
 
 	
-	 
+	  $(".suggestionsContainer").html("<h2>"+JSON.parse(localStorage['name'])+"</h2>")
  }
 
 
