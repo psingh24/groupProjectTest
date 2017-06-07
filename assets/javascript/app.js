@@ -359,15 +359,14 @@ function submit(){
 		initFoodAjax()
 		loadSuggestionPage()
 		
-displayNameLocalStorage()
+
 	});
 }
 // console.log(JSON.parse(localStorage['name']))
-function displayNameLocalStorage() {
+
 	$("#usernameSuggestions").html(JSON.parse(localStorage['name'])+"'s Suggestions" )
 
 
-}
 // displayNameLocalStorage()
 //  $(".suggestionsContainer").html("<h2>"+JSON.parse(localStorage['name'])+"</h2>")
 //  userHtml.html("<h2>"+JSON.parse(localStorage['name'])+"</h2>")
