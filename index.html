@@ -79,7 +79,12 @@
 <!-- easter egg library -->
 <script type="text/javascript" src="https://cdn.rawgit.com/mikeflynn/egg.js/master/egg.min.js"></script>
 <script type="text/javascript">
-$(".addUser").show()
+
+
+
+//Video
+$( document ).ready(function() {
+    // $(".addUser").show()
  $(".loginBtn").hide()
 // click login - load existing user prompt
 $("#login-button").on("click", function(){
@@ -92,10 +97,6 @@ $("#login-button").on("click", function(){
 	$("#facebook-btn").html('<i class="fa fa fa-facebook" aria-hidden="true"></i> Sign in with Facebook')
 	$("#google-btn").html('<i class="fa fa-google-plus" aria-hidden="true"></i> Sign in with Google</button>')
 })
-
-
-//Video
-$( document ).ready(function() {
 
     scaleVideoContainer();
 

@@ -45,6 +45,10 @@ function signInWithEmailAndPassword() {
 	console.log("hello")
 
 	firebase.auth().signInWithEmailAndPassword(email, password)
+	.then(function(user) {
+		console.log(displayName)
+		loadMainPage()
+	}
 	
 			 
 }
