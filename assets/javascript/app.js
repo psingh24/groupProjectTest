@@ -45,12 +45,12 @@ function signInWithEmailAndPassword() {
 	console.log("hello")
 
 	firebase.auth().signInWithEmailAndPassword(email, password)
-	.then(function(user) {
+	// .then(function(user) {
 		// user.updateProfile({displayName: displayName})
 		console.log(displayName)
 		loadMainPage()
 	
-	})
+	// })
 	
 			 
 }
