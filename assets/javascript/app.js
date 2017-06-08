@@ -45,9 +45,12 @@ function signInWithEmailAndPassword() {
 	console.log("hello")
 console.log(email, password)
 	firebase.auth().signInWithEmailAndPassword(email, password)
-	.then(function(user) {
+	.catch(function(error) {
 		// user.updateProfile({displayName: displayName})
-		console.log(displayName)
+		var errorCode = error.code;
+		var errorMessage = error.message
+		console.log(errorCode )
+		console.log(errorMessage )
 		loadMainPage()
 	
 	})
