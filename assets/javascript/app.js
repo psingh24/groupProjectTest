@@ -107,7 +107,7 @@ $("#newUser").on("click", function(event) {
 
 
 // $(document).on("click", ".loggingin", signInWithEmailAndPassword)
-$("#existingUser").on("click", function(event){
+$("#loginin").on("click", function(event){
 	event.preventDefault()
 	signInWithEmailAndPassword()
 })
