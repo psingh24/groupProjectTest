@@ -100,14 +100,14 @@ function facebookSignIn() {
 	});
   }
 
-$(".addUser").on("click", function(event) {
+$("#newUser").on("click", function(event) {
 	  event.preventDefault()
 	  createAccountWithEmailandPassword()
 })
 
 
 // $(document).on("click", ".loggingin", signInWithEmailAndPassword)
-$(".loggingin").on("click", function(event){
+$("#existingUser").on("click", function(event){
 	event.preventDefault()
 	signInWithEmailAndPassword()
 })
