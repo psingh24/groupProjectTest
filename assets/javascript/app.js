@@ -45,12 +45,12 @@ function signInWithEmailAndPassword() {
 	console.log("hello")
 
 	firebase.auth().signInWithEmailAndPassword(email, password)
-	// .then(function(user) {
+	.then(function(user) {
 		// user.updateProfile({displayName: displayName})
 		console.log(displayName)
 		loadMainPage()
 	
-	// })
+	})
 	
 			 
 }
@@ -135,7 +135,7 @@ firebase.auth().signOut().then(function() {
   // An error happened.
 });
 })
-var JSONreadyArray;
+// var JSONreadyArray;
 firebase.auth().onAuthStateChanged(function(firebaseUser){
 	if(firebaseUser) {
        //USer is signed in
@@ -196,16 +196,18 @@ function loadMainPage() {
 
 
 // var ref = firebase.database().ref("user");
-// ref.once("value")
-//   .then(function(snapshot) {
+ref.once("value")
+  .then(function(snapshot) {
     
-//     var name = snapshot.child("user").key;
-//     var email = snapshot.child("email").val();
-//     var list = snapshot.child("likes").val()
-//     console.log(name, email)
-//     console.log(list)
+    var name = snapshot.child("user").key;
+    var email = snapshot.child("email").val();
+    var list = snapshot.child("likes").val()
+    console.log(name, email)
+    console.log(list)
   
-//   });
+  });
+
+
 
 // LOGIN SECTION==================================================================================
 
