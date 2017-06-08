@@ -106,10 +106,11 @@ $(".addUser").on("click", function(event) {
 })
 
 
-$(document).on("click", ".loggingin", signInWithEmailAndPassword)
-// $(".loggingin").on("click", function(){
-// 	signInWithEmailAndPassword()
-// })
+// $(document).on("click", ".loggingin", signInWithEmailAndPassword)
+$(".loggingin").on("click", function(event){
+	event.preventDefault()
+	signInWithEmailAndPassword()
+})
 
 // SIGNUP ON CLICK
 $(".signin").on("click", function(event) {
