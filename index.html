@@ -80,6 +80,7 @@
 <script type="text/javascript" src="https://cdn.rawgit.com/mikeflynn/egg.js/master/egg.min.js"></script>
 <script type="text/javascript">
 $("#login-button").on("click", function() {
+    $("#loginin").removeClass("hidden");
     $("#modal-login-label").html("Log in to see more");
     $("#newUser").attr("id", "existingUser")
     $("#tagline").remove();
