@@ -82,7 +82,7 @@
 $("#login-button").on("click", function() {
     $("#loginin").removeClass("hidden");
     $("#modal-login-label").html("Log in to see more");
-    $("#newUser").attr("id", "existingUser")
+    $("#newUser").addClass("hidden");
     $("#tagline").remove();
     $("#nameInput").remove();
     $("#form-redo").html('<input type="password" class="form-control" id="PasswordInput" placeholder="Password">')
