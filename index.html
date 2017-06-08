@@ -59,7 +59,7 @@
 							<input type="password" class="form-control" id="createPasswordInput" placeholder="Create a password">
 						</div>
 						<button type="submit" class="loginBtn addUser btn btn-default">Continue</button>
-                        <button type="submit" class="loginBtn hide btn btn-default">Login</button>
+                        <button type="submit" class="loginBtn btn btn-default">Login</button>
 						<hr>
 						<div class="row">
 							<div class="col-md-12 text-center">
@@ -79,11 +79,13 @@
 <!-- easter egg library -->
 <script type="text/javascript" src="https://cdn.rawgit.com/mikeflynn/egg.js/master/egg.min.js"></script>
 <script type="text/javascript">
-
+$(".addUser").show()
+ $(".loginBtn").hide()
 // click login - load existing user prompt
 $("#login-button").on("click", function(){
-    $("loginBtn").show()
-	$("#modal-login-label").html("Log in to see more");
+    $(".addUser").hide()
+    $(".loginBtn").show()
+    $("#modal-login-label").html("Log in to see more");
 	$("#tagline").remove();
 	$("#nameInput").remove();
 	$("#form-redo").html('<input type="password" class="form-control" id="PasswordInput" placeholder="Password">')
