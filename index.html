@@ -80,23 +80,19 @@
 <script type="text/javascript" src="https://cdn.rawgit.com/mikeflynn/egg.js/master/egg.min.js"></script>
 <script type="text/javascript">
 
-
+$("#login-button").on("click", function(){
+    $("#modal-login-label").html("Log in to see more");
+    $("#newUser").attr("id", "existingUser")
+    $("#tagline").remove();
+    $("#nameInput").remove();
+    $("#form-redo").html('<input type="password" class="form-control" id="PasswordInput" placeholder="Password">')
+    $("#facebook-btn").html('<i class="fa fa fa-facebook" aria-hidden="true"></i> Sign in with Facebook')
+    $("#google-btn").html('<i class="fa fa-google-plus" aria-hidden="true"></i> Sign in with Google</button>')
 
 //Video
 $( document ).ready(function() {
     // $(".addUser").show()
- $(".loginBtn").hide()
-// click login - load existing user prompt
-$("#login-button").on("click", function(){
-    $(".addUser").hide()
-    $(".loginBtn").show()
-    $("#modal-login-label").html("Log in to see more");
-	$("#tagline").remove();
-	$("#nameInput").remove();
-	$("#form-redo").html('<input type="password" class="form-control" id="PasswordInput" placeholder="Password">')
-	$("#facebook-btn").html('<i class="fa fa fa-facebook" aria-hidden="true"></i> Sign in with Facebook')
-	$("#google-btn").html('<i class="fa fa-google-plus" aria-hidden="true"></i> Sign in with Google</button>')
-})
+
 
     scaleVideoContainer();
 

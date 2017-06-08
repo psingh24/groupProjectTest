@@ -40,8 +40,8 @@ function createAccountWithEmailandPassword() {
 }
 
 function signInWithEmailAndPassword() {
-	var email = $("#emailInput").val().trim();
-	var password = $("#createPasswordInput").val().trim();
+	var email = $("#emailInput").val();
+	var password = $("#createPasswordInput").val();
 	console.log("hello")
 
 	firebase.auth().signInWithEmailAndPassword(email, password)
