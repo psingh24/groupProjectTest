@@ -27,7 +27,7 @@ function createAccountWithEmailandPassword() {
 	var displayName = $("#nameInput").val().trim();
 	var email = $("#emailInput").val().trim();
 	var password = $("#createPasswordInput").val().trim();
-
+	console.log(email, password)
 	firebase.auth().createUserWithEmailAndPassword(email, password)
 	
 	.then(function(user) {
@@ -43,7 +43,7 @@ function signInWithEmailAndPassword() {
 	var email = $("#emailInput").val();
 	var password = $("#createPasswordInput").val();
 	console.log("hello")
-
+console.log(email, password)
 	firebase.auth().signInWithEmailAndPassword(email, password)
 	.then(function(user) {
 		// user.updateProfile({displayName: displayName})
@@ -582,3 +582,30 @@ $(".login").on("click", function(event) {
 
 // Login APP SECTION===============================================================================
 });
+
+
+// var connectionsRef = database.ref(“/connections”);
+// var connectedRef = database.ref(“.info/connected”);
+// var localChat=null;
+
+// // When the client’s connection state changes...
+// connectedRef.on(“value”, function(snap) {
+
+//      // If they are connected..
+//     if (snap.val()) {
+
+//    // Add user to the connections list.
+//     var con = connectionsRef.push(true);
+//     // Remove user from the connection list when they disconnect.
+//     con.onDisconnect().remove();
+
+//   }
+// });
+
+// // When first loaded or when the connections list changes...
+// connectionsRef.on(“value”, function(snap) {
+
+//  // Display the viewer count in the html.
+//   // The number of online users is the number of children in the connections list.
+//   $(“#connected-viewers”).html(snap.numChildren());
+// });
