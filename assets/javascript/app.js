@@ -335,7 +335,7 @@ function submit(){
  	    console.log(foodArray);
  	    console.log(drinksArray);
 
- 	   	ref.update({
+ 	   	 database.ref(username).update({
  	   		food : foodArray,
  	   		drinks : drinksArray,
  	   		events : eventsArray
@@ -375,7 +375,6 @@ var zomatoAPIkey = "4b4047ebe163df7deee6b42dd7828188"//"142b97a736485a30ff5b9a92
 var foodPickedArray=[];
 var foodCode=[];
 var foodType="";
-
 
 $.ajax({
     url:"https://developers.zomato.com/api/v2.1/cuisines?city_id=278&apikey="+zomatoAPIkey,
