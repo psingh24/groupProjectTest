@@ -401,7 +401,7 @@ $.ajax({
     foodCode=response.cuisines;
 
 database.ref(username).on('value', function(snapshot) {
- 		 console.log(snapshot.val().username[1]);
+ 		 console.log(snapshot.val().username.food);
 });
     if(foodArray.length>0){
         foodType="";
