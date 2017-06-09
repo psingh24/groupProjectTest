@@ -2,108 +2,134 @@
 <html lang="en">
 <head>
 	<title>Suggestions Click Test</title>
+	<script src="https://www.gstatic.com/firebasejs/4.0.0/firebase.js"></script>
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans|Oswald" rel="stylesheet">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<link rel="stylesheet" type="text/css" href="assets/css/topher.css">
+	<!-- <link rel="stylesheet" type="text/css" href="assets/css/topher.css"> -->
 	<link rel="stylesheet" type="text/css" href="assets/css/morgan.css">
 	<link rel="stylesheet" type="text/css" href="assets/css/responsive.css">
-	
+	<script src="assets/javascript/app.js"></script>
+
 </head>
 <body>
+<!-- Static navbar -->
+<nav class="navbar navbar-default">
+<div class="container">
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="developers.html"><img src="assets/images/cowboy.png" height="50px"></a>
+  </div>
+  <div id="navbar" class="navbar-collapse collapse">
+    <ul class="nav navbar-nav"></ul>
+    <ul class="nav navbar-nav navbar-right">
+		<li class="main-nav"><a href="preferences.html">Preferences</a></li>
+		<li class="main-nav"><a href="suggestions.html">Suggestions</a></li>
+		<li class="main-nav"><a href="#">Logout</a></li>
+    </ul>
+  </div><!--/.nav-collapse -->
+</div><!--/.container -->
+</nav>
 
-	<nav class="navbar navbar-default navbar-fixed-top">
-		<div class="container">
-			<ul class="nav navbar-nav navbar-left">
-				<li class="logo"><a href="index.html"><img src="assets/images/cowboy.png" height="50px"> AllY'all</a></li>
-			</ul>
-			<ul class="nav navbar-nav navbar-right">
-				<li class="main-nav"><a href="preferences.html">Preferences</a></li>
-				<li class="main-nav"><a href="suggestions.html">Suggestions</a></li>
-				<li class="main-nav"><a id="logout" href="#">Logout</a></li>
-			</ul>
+<div class="container">
+	<div class="jumbotron">
+		<h1>[username]'s Suggestions</h1><br/>
+	</div>
+</div>
+
+<!-- Modal -->
+<div id="myModalInfo" class="modal fade" role="dialog">
+	<div class="modal-dialog modal-lg">
+
+
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h4 class="modal-title">More Info</h4>
+			</div>
+			
+			<div class="modal-body">
+				<p id="mapComments"></p>
+				<p><button id="parking" class="btn btn-site btn-lg">Find Parking</button>
+				<div id="buy-tickets">Buy Tickets</div></p>
+				<div id="map"></div>
+			</div>
+			
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+			</div>
 		</div>
-	</nav>
+	</div>
+</div>
+<!-- Modal -->
 
-
-	<div class="container">
-		<div class="jumbotron">
-			<h1 id="usernameSuggestions"></h1><br/>
+<div class="container">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="suggestions-hero">
+				<img class="hero-image" src="assets/images/restaurants.jpg" alt="restaurants hero image"> 
+				<h2 class="hero-title">Eats</h2>
+			</div>
+		</div>
+	</div>	
+	
+	<div class="row">
+		<div class="col-md-12">	
+			<div class="row" id="foodRow0"></div>
+			<div class="row" id="foodRow1"></div>
 		</div>
 	</div>
 
-	<!-- Modal -->
-	<div id="myModalInfo" class="modal fade" role="dialog">
-		<div class="modal-dialog modal-lg">
 
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal">&times;</button>
-					<h4 class="modal-title">More Info</h4>
-				</div>
-				
-				<div class="modal-body">
-					<p>Hours:</p>
-					<button id="parking">Find Parking</button>
-					<div id="map"></div>
-				</div>
-				
-				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-				</div>
+	<div class="row">
+		<div class="col-md-12">	
+			<div class="suggestions-hero">
+				<img class="hero-image" src="assets/images/bar.jpg" alt="bar hero image"> 
+				<h2 class="hero-title">Drinks</h2>
 			</div>
 		</div>
 	</div>
-	<!-- Modal -->
 
-	<div class="container">
-		<div class="row">
-			<div class="col-md-12">
-				<div class="suggestions-hero">
-					<img class="hero-image" src="assets/images/restaurants.jpg" alt="restaurants hero image"> 
-					<h2 class="hero-title">Eats</h2>
-				</div>
-			</div>
-		</div>	
-		
-		<div class="food"></div>
+	<div class="row">
+		<div class="col-md-12">	
+			<div class="row" id="drinkRow0"></div>
+			<div class="row" id="drinkRow1"></div>
+		</div>
+	</div>
 
+	<div class="col-md-12 restaurant-suggestions">
 		<div class="row">
-			<div class="col-md-12">	
-				<div class="suggestions-hero">
-					<img class="hero-image" src="assets/images/bar.jpg" alt="bar hero image"> 
-					<h2 class="hero-title">Drinks</h2>
-				</div>
+			<div class="suggestions-hero">
+				<img class="hero-image" src="assets/images/event.jpg" alt="event hero image"> 
+				<h2 class="hero-title">Events</h2>
 			</div>
 		</div>
+	</div>
 
-		 
+	<div class="col-md-6 suggestions-list-items" id="eventsSuggestions1"></div> 
+	<div class="col-md-6 suggestions-list-items" id="eventsSuggestions2"></div> 
+</div> 
 
-		<div class="col-md-12 restaurant-suggestions">
-			<div class="row">
-				<div class="suggestions-hero">
-					<img class="hero-image" src="assets/images/event.jpg" alt="event hero image"> 
-					<h2 class="hero-title">Events</h2>
-				</div>
-			</div>
-		</div>
-
-		  
-	</div> 
+<div class="container"></div>
+<div class="preferences"></div>
+<div class="col-md-12 display-preferences"></div>
 
 
-	<div class="container"></div>
-	<div class="preferences"></div>
-	<div class="col-md-12 display-preferences"></div>
-
-<div class="suggestionsContainer"></div>
-
-	<!--<script>
+	<script>
+		var infowindowArray=[];
+		var currentRestaurantLat = "";
+		var currentRestaurantLong ="";
 		var lat1, lat2, lat3, lat4, lng1, lng2, lng3, lng4, parking1, parking2, parking3, parking4, me, map, contentString, infowindow;
 		function initMap() {
-			var uluru = {lat: 30.2672, lng: -97.7431};
+			var uluru = {lat: Number(currentRestaurantLat), lng: Number(currentRestaurantLong)};
 			parking1 = {lat: Number(lat1), lng: Number(lng1)};
 			parking2 = {lat: Number(lat2), lng: Number(lng2)};
 			parking3 = {lat: Number(lat3), lng: Number(lng3)};
@@ -118,97 +144,135 @@
 			});
 
 			var marker1 = new google.maps.Marker({
-				position: parking2,
+				position: parking1,
 				map: map
 			});
 			marker1.addListener('click', function() {
-				infowindow.open(map, marker1);
+				infowindowArray[0].open(map, marker1);
 			});
 			var marker2 = new google.maps.Marker({
-				position: parking3,
+				position: parking2,
 				map: map
 			});
 			marker2.addListener('click', function() {
-				infowindow.open(map, marker2);
+				infowindowArray[1].open(map, marker2);
 			});
 			var marker3 = new google.maps.Marker({
-				position: parking4,
+				position: parking3,
 				map: map
 			});
 			marker3.addListener('click', function() {
-				infowindow.open(map, marker3);
+				infowindowArray[2].open(map, marker3);
+			});
+			var marker4 = new google.maps.Marker({
+				position: parking4,
+				map: map
+			});
+			marker4.addListener('click', function() {
+				infowindowArray[3].open(map, marker4);
 			});
 			
 		}
 
 		$('#myModalInfo').on('shown.bs.modal', function() {
-        var currentCenter = map.getCenter();  // Get current center before resizing
-        google.maps.event.trigger(map, "resize");
-                map.setCenter(currentCenter); // Re-set previous center
-            });
+	        var currentCenter = map.getCenter();  // Get current center before resizing
+	        google.maps.event.trigger(map, "resize");
+	        map.setCenter(currentCenter); // Re-set previous center
+	        var uluru = {lat: Number(currentRestaurantLat), lng: Number(currentRestaurantLong)};
+			map = new google.maps.Map(document.getElementById('map'), {
+				zoom: 13,
+				center: uluru
+			});
+			var marker = new google.maps.Marker({
+				position: uluru,
+				map: map
+			});
+	    });
+
+
+
+		$(document).on("click","#infoBtn", function() {
+			currentRestaurantLat=$(this).attr("data-lat");
+			currentRestaurantLong=$(this).attr("data-long");
+			console.log(currentRestaurantLat);
+			console.log(currentRestaurantLong);
+		});
 
 		$("#parking").on("click", function() {
-			console.log("hello")
-			var url = "https://api.parkwhiz.com/search/?lat=30.267153&lng=-97.7430608"
+			var url = "https://api.parkwhiz.com/search/?lat="+currentRestaurantLat+"&lng="+currentRestaurantLong
 			var apiKey = "&key=874619822654f3bbbf0587277df3bfbb167be451"
+			console.log(url+apiKey);
 
 			$.ajax({
 				url: url+apiKey,
 				method: "GET"
 			}).done(function(data){
 				var parkingListing = data.parking_listings;
-		// console.log(parkingListing)
+				console.log(parkingListing==null)
+				console.log(parkingListing)
 
-		for (var i =0; i < 4; i++) {
-			// console.log(parkingListing[i])
+				if(parkingListing==null){
+					$("#mapComments").html("No available parking nearby!");
+					var uluru = {lat: Number(currentRestaurantLat), lng: Number(currentRestaurantLong)};
+					map = new google.maps.Map(document.getElementById('map'), {
+						zoom: 13,
+						center: uluru
+					});
+					var marker = new google.maps.Marker({
+						position: uluru,
+						map: map
+					});
+				}
+				else{
 
-			var street = parkingListing[i].address;
-			var city = parkingListing[i].city;
-			var state = parkingListing[i].state;
+					for (var i =0; i < 4; i++) {
+						// console.log(parkingListing[i])
 
-			lat1 = parkingListing[1].lat
-			lng1 = parkingListing[1].lng
+						var street = parkingListing[i].address;
+						var city = parkingListing[i].city;
+						var state = parkingListing[i].state;
 
-			lat2 = parkingListing[2].lat
-			lng2 = parkingListing[2].lng
+						lat1 = parkingListing[0].lat
+						lng1 = parkingListing[0].lng
 
-			lat3 = parkingListing[3].lat
-			lng3 = parkingListing[3].lng
+						lat2 = parkingListing[1].lat
+						lng2 = parkingListing[1].lng
 
-			lat4 = parkingListing[4].lat
-			lng4 = parkingListing[4].lng
-            // console.log(lat1, lng1)
-            
-            contentString = '<div id="content">'+
-            '<div id="siteNotice">'+
-            '</div>'+
-            '<h1 id="firstHeading" class="firstHeading">'+parkingListing[1].location_name+'</h1>'+
-            '<div id="bodyContent">'+
-            '<p><b>'+parkingListing[1].address+'<br>'+parkingListing[1].city+'<br>'+parkingListing[1].state+'</b></p>'+
-            '<p>Price: $'+parkingListing[1].price+'</p>'+
-            '<p>Available Spots: '+parkingListing[1].available_spots+'</p>'+
-            '<p>Buy Parking: '+ '<a href='+parkingListing[1].www_reserve_url+'>ParkWhiz</>'+'</p>'+
-            '</div>'+
-            '</div>';
+						lat3 = parkingListing[2].lat
+						lng3 = parkingListing[2].lng
 
-            infowindow = new google.maps.InfoWindow({
-            	content: contentString
-            });
+						lat4 = parkingListing[3].lat
+						lng4 = parkingListing[3].lng
+			  
 
-            initMap()
-        }
-    });
+			            contentString = '<div id="content">'+
+			            '<div id="siteNotice">'+
+			            '</div>'+
+			            '<h1 id="firstHeading" class="firstHeading">'+parkingListing[i].location_name+'</h1>'+
+			            '<div id="bodyContent">'+
+			            '<p><b>'+parkingListing[i].address+'<br>'+parkingListing[i].city+'<br>'+parkingListing[i].state+'</b></p>'+
+			            '<p>Price: $'+parkingListing[i].price+'</p>'+
+			            '<p>Available Spots: '+parkingListing[i].available_spots+'</p>'+
+			            '<p>Buy Parking: '+ '<a href='+parkingListing[i].www_reserve_url+'>ParkWhiz</>'+'</p>'+
+			            '</div>'+
+			            '</div>';
+
+			            infowindowArray[i] = new google.maps.InfoWindow({
+			            	content: contentString
+			            });
+
+			            initMap()
+			        }
+		        }
+			});
 
 		})
 
 	</script>
 	<script async defer
 	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCXgCkayPHIbeRCWDQX_UG_cPL0yUKP_GI&callback=initMap">
-</script>-->
+</script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://www.gstatic.com/firebasejs/4.1.1/firebase.js"></script>
-
-<script type="text/javascript" src="assets/javascript/app.js"></script>
 
 </body>
 

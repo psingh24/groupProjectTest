@@ -1,4 +1,5 @@
 $(document).ready(function(){
+
 var userHtml = $("#username");
 var username;
 //  Initialize Firebase
@@ -15,57 +16,52 @@ var username;
 var database = firebase.database();
 var ref = database.ref("user");
 var signedIn;
-// var preferences = signedIn.child("preferences")
+
+
 // LOGIN SECTION==================================================================================
-  //instance of the goggle provider object
+ //instance of the goggle provider object
 var google = new firebase.auth.GoogleAuthProvider();
 var facebook = new firebase.auth.FacebookAuthProvider();
 
-// GOOGLE SIGNIN
-
+// Create an Account with email and pass 
 function createAccountWithEmailandPassword() {
 	var displayName = $("#nameInput").val().trim();
 	var email = $("#emailInput").val().trim();
 	var password = $("#createPasswordInput").val().trim();
 	console.log(email, password)
 	firebase.auth().createUserWithEmailAndPassword(email, password)
-	
-	.then(function(user) {
-		user.updateProfile({displayName: displayName})
-		console.log(displayName)
-		loadMainPage()
-	
-	})
+		.then(function(user) {
+			user.updateProfile({displayName: displayName})
+			console.log(displayName)
+			loadMainPage()
+		})
 
 }
 
+//Sign in with email and pass
 function signInWithEmailAndPassword() {
 	var email = $("#emailInput").val();
 	var password = $("#PasswordInput").val();
 	console.log("hello")
-console.log(email, password)
+	console.log(email, password)
 	firebase.auth().signInWithEmailAndPassword(email, password)
-	.then(function(user) {
+		.then(function(user) {
 		// user.updateProfile({displayName: displayName})
 		loadMainPage()
-	
-	})
-	
-			 
+	})			 
 }
 
-
+//Sign in With Google
 function googleSignIn() {
 	firebase.auth().signInWithPopup(google).then(function(result) {
-			// This gives you a Google Access Token. You can use it to access the Google API.
-			var token = result.credential.accessToken;
-			  // The signed-in user info.
-			var user = result.user;
-			  // ...
-           
-            
-			loadMainPage()
-			}).catch(function(error) {
+		// This gives you a Google Access Token. You can use it to access the Google API.
+		var token = result.credential.accessToken;
+		// The signed-in user info.
+		var user = result.user;
+
+		loadMainPage()
+			
+		}).catch(function(error) {
 			  // Handle Errors here.
 			  var errorCode = error.code;
 			  var errorMessage = error.message;
@@ -76,7 +72,7 @@ function googleSignIn() {
 			  // ...
 			});
   }
-
+//Sign in With FB
 function facebookSignIn() {
 	firebase.auth().signInWithPopup(facebook).then(function(result) {
 		  // This gives you a Facebook Access Token. You can use it to access the Facebook API.
@@ -96,22 +92,22 @@ function facebookSignIn() {
 			// The firebase.auth.AuthCredential type that was used.
 			var credential = error.credential;
 			// ...
-	});
+		});
   }
 
+//Button click when new user signs up with email and pass
 $("#newUser").on("click", function(event) {
 	  event.preventDefault()
 	  createAccountWithEmailandPassword()
 })
 
-
-// $(document).on("click", ".loggingin", signInWithEmailAndPassword)
+//Button click when user signs in with email and pass
 $("#loginin").on("click", function(event){
 	event.preventDefault()
 	signInWithEmailAndPassword()
 })
 
-// SIGNUP ON CLICK
+// SIGNUP ON CLICK via Google or FB
 $(".signin").on("click", function(event) {
     event.preventDefault()
 	var method = $(this).attr("data")
@@ -125,48 +121,41 @@ $(".signin").on("click", function(event) {
 		
     } 
 })
-// Sign Out
+// Button click to sign out
 $("#logout").on("click", function() {
-firebase.auth().signOut().then(function() {
-  // Sign-out successful.
-  loadLoginPage();
-}).catch(function(error) {
+	firebase.auth().signOut().then(function() {
+  	// Sign-out successful.
+  	loadLoginPage();
+	}).catch(function(error) {
   // An error happened.
-});
+	});
 })
-// var JSONreadyArray;
+// Firebase on auth change. Saves user name
 firebase.auth().onAuthStateChanged(function(firebaseUser){
 	if(firebaseUser) {
        //USer is signed in
-	   console.log(firebaseUser)
-
-	   username = firebaseUser.displayName
-	//    JSONreadyArray = JSON.stringify(username);
-	//    localStorage.setItem("name", JSONreadyArray);
-	//    $("#usernameSuggestions").html(JSON.parse(localStorage['name'])+"'s Suggestions" )
-	  
+		console.log(firebaseUser)
+		
+		username = firebaseUser.displayName
+		
 		userHtml.html("Welcome "+ firebaseUser.displayName)
-		 $("#usernameSuggestions").html(firebaseUser.displayName+"'s Suggestions" )
+		
+		$("#usernameSuggestions").html(firebaseUser.displayName+"'s Suggestions" )
+		
 		signedIn = ref.child(firebaseUser.displayName) 
-        signedIn.update({
+        
+		signedIn.update({
             name: firebaseUser.displayName,
             email: firebaseUser.email
-})
+	})
 		// $(".name").html("<h2>Hi "+firebaseUser+"!</h2>")
 	} else {
+
 		console.log("not lgged In")
 	}
 })
 
-
-
-
-
-
-
-
-
-
+//Loading different pages
 function loadMainPage() {
      window.location.href = 'preferences.html';
 	 
@@ -183,37 +172,20 @@ function loadMainPage() {
 	 
  }
    function loadSuggestionPage() {
-     window.location.href = 'suggestions.html';
-
-	$("#usernameSuggestions").html(JSON.parse(localStorage['name'])+"'s Suggestions" )
-
-	 
+     window.location.href = 'suggestions.html';	 
  }
 
 //  $("#usernameSuggestions").html(JSON.parse(localStorage['name'])+"'s Suggestions" )
 
 
 
-// var ref = firebase.database().ref("user");
-ref.once("value")
-  .then(function(snapshot) {
-    
-    var name = snapshot.child("user").key;
-    var email = snapshot.child("email").val();
-    var list = snapshot.child("likes").val()
-    console.log(name, email)
-    console.log(list)
-  
-  });
 
 
 
-// LOGIN SECTION==================================================================================
-
-// MAIN APP SECTION===============================================================================
+// MAIN APP SECTION================================================================================
 var foodArray = [];
 var drinksArray = [];
-var eventsArray = [];
+var eventsArray = ['Rap','Country','Sports'];
 
 $(".drinks-section").hide();
 $(".events-section").hide();
@@ -226,6 +198,7 @@ $("#drinks-question").on("click", function(){
 });
 
 $("#events-question").on("click", function(){
+
 	$(".events-section").show();
 	$(".food-section").hide();
 	$(".drinks-section").hide();
@@ -312,7 +285,10 @@ function drinks() {
 }
 
 function events() {
+
+
 	$(".events").on("click", function(){
+
 		if($(this).attr("data-state")=="unclicked"){
 			var selection = $(this).attr("data-name");
 			eventsArray.push(selection);
@@ -350,114 +326,96 @@ food();
 drinks();
 events();
 
-
-//Submit food to firebase
 function submit(){
-	$("#submitBtn").on("click", function(event){
-		event.preventDefault();
-	    console.log(eventsArray);
-	    console.log(foodArray);
-	    console.log(drinksArray);
+ 	$("#submitBtn").on("click", function(event){
+ 		event.preventDefault();
+ 	    console.log(eventsArray);
+ 	    console.log(foodArray);
+ 	    console.log(drinksArray);
 
-		
-		// var preferences = signedIn.child("preferences")
-	   database.ref(username).set({
-	   		food : foodArray,
-	   		drinks : drinksArray,
-	   		events : eventsArray
-	   	});	   
-		   
-		initFoodAjax()
-		loadSuggestionPage()
-		
+ 	   	ref.update({
+ 	   		food : foodArray,
+ 	   		drinks : drinksArray,
+ 	   		events : eventsArray
+ 	   	});	
 
-	});
-}
-// console.log(JSON.parse(localStorage['name']))
+ 	   	//sets events ajax query url with events array and prints to suggestions page
+ 	   	eventsFunction();
 
 
-		
-
-		
-
-	
-
-
-// displayNameLocalStorage()
-//  $(".suggestionsContainer").html("<h2>"+JSON.parse(localStorage['name'])+"</h2>")
-//  userHtml.html("<h2>"+JSON.parse(localStorage['name'])+"</h2>")
-submit();
-
-var foods;
-// ref.on("value", function(snapshot) {
-//   console.log(snapshot.val());
-// }, function (errorObject) {
-//   console.log("The read failed: " + errorObject.code);
-// });
+ 	});
+ }
+  
+ submit();
 
 
 
-// MAIN APP SECTION===============================================================================
 
 
 
-// SUGGESTIONS APP SECTION===============================================================================
-
-var mainBanner = "<div class='container'><div class='jumbotron'><h1>[username]'s Suggestions</h1><br/></div></div>"
-
-var foodBanner = "<div class='container'><div class='row'><div class='col-md-12'><div class='suggestions-hero'><img class='hero-image' src='assets/images/restaurants.jpg' alt='restaurants hero image'><h2 class='hero-title'>Eats</h2></div></div></div>"
-
-var drinksBanner = "<div class='container'><div class='row'><div class='col-md-12'><div class='suggestions-hero'><img class='hero-image' src='assets/images/bar.jpg' alt='bar hero image'><h2 class='hero-title'>drinks</h2></div></div></div>"
 
 
-// var reultContainer = "<div class='row'><div class='col-md-12'><div class='row'></div></div></div>"
-// var results = "<div class='row'><div class='col-md-12'><div class='row'><div class='col-md-6 suggestions-list-items'><div class='col-md-6'><a href='#'><img class='thumbnail-suggestions' src='"+restaurants[i].restaurant.thumb+"' alt='test'></a></div><div class='col-md-6'><h2 class='suggestions-h2'>"+estaurants[i].restaurant.name+"</h2><h4>"+restaurants[i].restaurant.location.address+"</h4><br/><p><a class='btn btn-site btn-lg' href='#' id='infoBtn' role='button' data-toggle='modal' data-target='#myModalInfo'>More Info</a></p></div></div></div></div></div>"
 
 
-// var resultContainer = "<div class='row'><div class='col-md-12'><div class='row'>"+results+results+results+results+"</div></div></div>"
 
-// $(".suggestionsContainer").append(mainBanner+foodBanner+resultContainer+drinksBanner+resultContainer)
 
+
+
+
+
+
+// Food Suggestions Part==========================================================================
+
+var zomatoAPIkey = "4b4047ebe163df7deee6b42dd7828188"//"142b97a736485a30ff5b9a92ddbb8fde";
+var foodArray=["American", "Italian", "Chinese", "Mexican", "Japanese", "Thai", "BBQ", "Indian"];
+var foodPickedArray=[];
 var foodCode=[];
-function initFoodAjax() {
-
 var foodType="";
-		$.ajax({
-		url:"https://developers.zomato.com/api/v2.1/cuisines?city_id=278&apikey=142b97a736485a30ff5b9a92ddbb8fde",
-		method:"GET"
-		}).done(function(response){
-		foodCode=response.cuisines;
-		console.log(foodCode)
-		foodAjax() 
-	});
-}
 
-function foodAjax() {
-    foodType="";
-    for(var i=0; i<foodCode.length;i++){
-        if(foodArray.indexOf(foodCode[i].cuisine.cuisine_name.toUpperCase())>-1){
-            foodType=foodType+"%2C"+foodCode[i].cuisine.cuisine_id.toString();
-        }
-		console.log(foodType)
-    }
-    $.ajax({
-    url:"https://developers.zomato.com/api/v2.1/search?entity_id=278&entity_type=city&apikey=142b97a736485a30ff5b9a92ddbb8fde&count=4&sort=rating&order=desc&cuisines="+foodType,
+
+$.ajax({
+    url:"https://developers.zomato.com/api/v2.1/cuisines?city_id=278&apikey="+zomatoAPIkey,
     method:"GET"
-    }).done(function(response){
-        var restaurants=response.restaurants;
-		console.log(restaurants)
-        for(var i=0; i<restaurants.length;i++){
-
-            var restaurantList = mainBanner+foodBanner+"<div class='row'><div class='col-md-12'><div class='row'><div class='col-md-6 suggestions-list-items'><div class='col-md-6'><a href='#'><img class='thumbnail-suggestions' src='"+restaurants[i].restaurant.thumb+"' alt='test'></a></div><div class='col-md-6'><h2 class='suggestions-h2'>"+restaurants[i].restaurant.name+"</h2><h4>"+restaurants[i].restaurant.location.address+"</h4><br/><p><a class='btn btn-site btn-lg' href='#' id='infoBtn' role='button' data-toggle='modal' data-target='#myModalInfo'>More Info</a></p></div></div></div></div></div>"
+}).done(function(response){
+    foodCode=response.cuisines;
+    if(foodPickedArray.length>0){
+        foodType="";
+        for(var i=0; i<foodCode.length;i++){
+            if(foodPickedArray.indexOf(foodCode[i].cuisine.cuisine_name.toUpperCase())>-1){
+                if(foodType!=""){
+                    foodType=foodType+"%2C"+foodCode[i].cuisine.cuisine_id.toString();
+                }
+                else{
+                    foodType=foodCode[i].cuisine.cuisine_id.toString();
+                };
+            }
         }
-		$(".suggestionsContainer").append(restaurantList);
-	
-        // $(".suggestionsContainer").append(restaurantList);
+        console.log(foodType);
+        $.ajax({
+        url:"https://developers.zomato.com/api/v2.1/search?entity_id=278&entity_type=city&apikey="+zomatoAPIkey+"&count=4&sort=rating&order=desc&cuisines="+foodType,
+        method:"GET"
+        }).done(function(response){
+            var restaurants=response.restaurants;
+            for(var i=0; i<restaurants.length;i++){
+                $("#foodRow"+Math.floor(i/2)).append(
+                "<div class='col-md-6 suggestions-list-items'><div class='col-md-6'><a href='#'><img class='thumbnail-suggestions' width='200px' height='200px' src='"+restaurants[i].restaurant.thumb+"' alt='test'></a></div><div class='col-md-6'><h2 class='suggestions-h2'>"+restaurants[i].restaurant.name+"</h2><h4>"+restaurants[i].restaurant.location.address+"</h4><br/><p><a class='btn btn-site btn-lg' href='#' id='infoBtn' role='button' data-toggle='modal' data-target='#myModalInfo' data-lat="+restaurants[i].restaurant.location.latitude+" data-long="+restaurants[i].restaurant.location.longitude+">More Info</a></p></div></div>")
+            }
+        });
+    }
+    else{
+        $.ajax({
+        url:"https://developers.zomato.com/api/v2.1/search?entity_id=278&entity_type=city&apikey="+zomatoAPIkey+"&count=4&sort=rating&order=desc&collection_id=1",
+        method:"GET"
+        }).done(function(response){
+            var restaurants=response.restaurants;
+            for(var i=0; i<restaurants.length & i<4; i++){
+                $("#foodRow"+Math.floor(i/2)).append(
+                "<div class='col-md-6 suggestions-list-items'><div class='col-md-6'><a href='#'><img class='thumbnail-suggestions' width='200px' height='200px' src='"+restaurants[i].restaurant.thumb+"' alt='test'></a></div><div class='col-md-6'><h2 class='suggestions-h2'>"+restaurants[i].restaurant.name+"</h2><h4>"+restaurants[i].restaurant.location.address+"</h4><br/><p><a class='btn btn-site btn-lg' href='#' id='infoBtn' role='button' data-toggle='modal' data-target='#myModalInfo' data-lat="+restaurants[i].restaurant.location.latitude+" data-long="+restaurants[i].restaurant.location.longitude+">More Info</a></p></div></div>")
+            }
+        });
+    }
 
-    });
-
-}
-
+})
 
 
 // Drink Suggestions Part
@@ -468,39 +426,10 @@ var drinkCode=[];
 var drinkType="";
 
 $.ajax({
-    url:"https://developers.zomato.com/api/v2.1/establishments?city_id=278&apikey=142b97a736485a30ff5b9a92ddbb8fde",
+    url:"https://developers.zomato.com/api/v2.1/establishments?city_id=278&apikey="+zomatoAPIkey,
     method:"GET"
 }).done(function(response){
     drinkCode=response.establishments;
-});
-
-for(var i=0; i<drinkArray.length;i++){
-    createDrinkButton(drinkArray[i]);
-};
-
-
-$(document).on("click",".drinkButton", function(){
-    if($(this).attr("data-state")=="unclicked"){
-        if(drinkPickedArray.length<2){
-            var drink = $(this).attr("id");
-            drinkPickedArray.push(drink.toUpperCase());
-            $(this).removeClass("unclicked");
-            $(this).attr("data-state","clicked");
-        }
-        else{alert("You can only pick up to 2 drinks at a time")}
-    }
-    else if($(this).attr("data-state")=="clicked"){
-        var drink = $(this).attr("id");
-        var index = drinkPickedArray.indexOf(drink.toUpperCase());
-        drinkPickedArray.splice(index,1);
-        $(this).addClass("unclicked");
-        $(this).attr("data-state","unclicked");
-    }
-})
-
-
-$("#drinkSuggestion").on('click',function (event){
-    event.preventDefault();
     drinkType="";
     var drinkTypeArray=[];
 
@@ -508,103 +437,551 @@ $("#drinkSuggestion").on('click',function (event){
         if(drinkPickedArray.indexOf(drinkCode[i].establishment.name.toUpperCase())>-1){
             drinkTypeArray.push(drinkCode[i].establishment.id);
         }
+        console.log(drinkTypeArray);
     }
 
     if(drinkTypeArray.length==1){
        $.ajax({
-        url:"https://developers.zomato.com/api/v2.1/search?entity_id=278&entity_type=city&apikey=142b97a736485a30ff5b9a92ddbb8fde&sort=rating&count=4&order=des&establishment_type="+drinkTypeArray[0],
+        url:"https://developers.zomato.com/api/v2.1/search?entity_id=278&entity_type=city&apikey="+zomatoAPIkey+"&sort=rating&count=4&order=des&establishment_type="+drinkTypeArray[0],
         method:"GET"
         }).done(function(response){
             drink=response.restaurants;
             var drinkList = $("<div>");
             for(var i=0; i<drink.length;i++){
-                drinkList.append("<div><p>"+drink[i].restaurant.name+"</p>"+"<p>"+drink[i].restaurant.location.address+"</p>"+"<img src='"+drink[i].restaurant.thumb+"'></div>"+"<br/>")
+                $("#drinkRow"+Math.floor(i/2)).append(
+                "<div class='col-md-6 suggestions-list-items'><div class='col-md-6'><a href='#'><img class='thumbnail-suggestions' width='200px' height='200px' src='"+drink[i].restaurant.thumb+"' alt='test'></a></div><div class='col-md-6'><h2 class='suggestions-h2'>"+drink[i].restaurant.name+"</h2><h4>"+drink[i].restaurant.location.address+"</h4><br/><p><a class='btn btn-site btn-lg' href='#' id='infoBtn' role='button' data-toggle='modal' data-target='#myModalInfo' data-lat="+drink[i].restaurant.location.latitude+" data-long="+drink[i].restaurant.location.longitude+">More Info</a></p></div></div>")
             }
-            $("#DrinkSuggestionResults").html(drinkList);
         }); 
     }
     else if (drinkTypeArray.length==2){
-        $("#DrinkSuggestionResults").html("");
+        var counter=0;
         for(var j =0; j < drinkTypeArray.length; j++){
             drinkType=drinkTypeArray[j];
             $.ajax({
-            url:"https://developers.zomato.com/api/v2.1/search?entity_id=278&entity_type=city&apikey=142b97a736485a30ff5b9a92ddbb8fde&sort=rating&count=2&order=des&establishment_type="+drinkType,
+            url:"https://developers.zomato.com/api/v2.1/search?entity_id=278&entity_type=city&apikey="+zomatoAPIkey+"&sort=rating&count=2&order=des&establishment_type="+drinkType,
             method:"GET"
             }).done(function(response){
                 drink=response.restaurants;
                 var drinkList = $("<div>");
                 for(var i=0; i<drink.length;i++){
-                    drinkList.append("<div><p>"+drink[i].restaurant.name+"</p>"+"<p>"+drink[i].restaurant.location.address+"</p>"+"<img src='"+drink[i].restaurant.thumb+"'></div>"+"<br/>")
+                    $("#drinkRow"+Math.floor(counter/2)).append(
+                    "<div class='col-md-6 suggestions-list-items'><div class='col-md-6'><a href='#'><img class='thumbnail-suggestions' width='200px' height='200px' src='"+drink[i].restaurant.thumb+"' alt='test'></a></div><div class='col-md-6'><h2 class='suggestions-h2'>"+drink[i].restaurant.name+"</h2><h4>"+drink[i].restaurant.location.address+"</h4><br/><p><a class='btn btn-site btn-lg' href='#' id='infoBtn' role='button' data-toggle='modal' data-target='#myModalInfo' data-lat="+drink[i].restaurant.location.latitude+" data-long="+drink[i].restaurant.location.longitude+">More Info</a></p></div></div>")
+                    counter++;
                 }
-                $("#DrinkSuggestionResults").append(drinkList);
             });
         }
     }
-})
-
-function createDrinkButton(drink){
-    var button = $("<button>");
-    button.addClass("drinkButton");
-    button.addClass("unclicked");
-    button.attr("id",drink);
-    button.attr("data-state","unclicked");
-    button.html(drink);
-    $("#likeDrink").append(button);
-}
-
-
-// SUGGESTIONS APP SECTION===============================================================================
-
-
-
-
-// Login APP SECTION===============================================================================
-
-// var userData = 
-$(".login").on("click", function(event) {
-	event.preventDefault()
-	var method = $(this).attr("data")
-	console.log("hello")
-        if (method === "google") {
-		googleSignIn();
-	
-        }
-	else if(method === "facebook") {
-		facebookSignIn();
-		loadReturnUser()
-    } 
-
-})
-
-
-
-
-// Login APP SECTION===============================================================================
+    else if (drinkTypeArray.length==0){
+        $.ajax({
+        url:"https://developers.zomato.com/api/v2.1/search?entity_id=278&entity_type=city&apikey="+zomatoAPIkey+"&sort=rating&count=4&order=des&cuisines=268",
+        method:"GET"
+        }).done(function(response){
+            drink=response.restaurants;
+            var drinkList = $("<div>");
+            for(var i=0; i<drink.length;i++){
+                $("#drinkRow"+Math.floor(i/2)).append(
+                "<div class='col-md-6 suggestions-list-items'><div class='col-md-6'><a href='#'><img class='thumbnail-suggestions' width='200px' height='200px' src='"+drink[i].restaurant.thumb+"' alt='test'></a></div><div class='col-md-6'><h2 class='suggestions-h2'>"+drink[i].restaurant.name+"</h2><h4>"+drink[i].restaurant.location.address+"</h4><br/><p><a class='btn btn-site btn-lg' href='#' id='infoBtn' role='button' data-toggle='modal' data-target='#myModalInfo' data-lat="+drink[i].restaurant.location.latitude+" data-long="+drink[i].restaurant.location.longitude+">More Info</a></p></div></div>")
+            }
+        }); 
+    }
 });
 
 
-// var connectionsRef = database.ref(“/connections”);
-// var connectedRef = database.ref(“.info/connected”);
-// var localChat=null;
 
-// // When the client’s connection state changes...
-// connectedRef.on(“value”, function(snap) {
 
-//      // If they are connected..
-//     if (snap.val()) {
 
-//    // Add user to the connections list.
-//     var con = connectionsRef.push(true);
-//     // Remove user from the connection list when they disconnect.
-//     con.onDisconnect().remove();
 
-//   }
-// });
 
-// // When first loaded or when the connections list changes...
-// connectionsRef.on(“value”, function(snap) {
 
-//  // Display the viewer count in the html.
-//   // The number of online users is the number of children in the connections list.
-//   $(“#connected-viewers”).html(snap.numChildren());
-// });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//ABOUT US PAGE===================================================================================
+$(".devs").hover(function(){
+   	$(this).attr("src", $(this).attr("data-animate"));
+    }, function(){
+    $(this).attr("src", $(this).attr("data-still"));
+
+});
+
+
+// EVents Section==================================================================================
+var ryanQueryURL = "https://api.seatgeek.com/2/events?venue.city=Austin&client_id=NzY1OTcwOHwxNDk1NjQ4MzM0Ljk0";
+
+
+//seat geek client id: NzY1OTcwOHwxNDk1NjQ4MzM0Ljk0
+
+//seat geek app secret: a44eefef28620b890494943cf09df0f1cee710ab733dd772d47b947311f5be58
+
+console.log('yes');
+//category buttons, adds taxonomies to search ryanQueryURL
+function eventsFunction(){
+
+		for (var z = 0; z < eventsArray.length ; z++)
+
+		{
+
+			if (eventsArray[z] === 'Rock')
+			{
+				console.log(ryanQueryURL);
+
+				ryanQueryURL += "&taxonomies.name=concert";
+								                        
+				ryanQueryURL += "&genres.slug=rock";
+			}
+
+			if (eventsArray[z] === 'Rap')
+			{
+				ryanQueryURL += "&taxonomies.name=concert";
+								                        
+				ryanQueryURL += "&genres.slug=rap&genres.slug=hip-hop";
+			}
+
+			if (eventsArray[z] === 'EDM')
+			{
+				ryanQueryURL += "&taxonomies.name=concert";
+		                            
+		        ryanQueryURL += "&genres.slug=electronic";
+
+			}
+
+			if (eventsArray[z] === 'Country')
+			{
+				ryanQueryURL += "&taxonomies.name=concert";
+		                        
+		        ryanQueryURL += "&genres.slug=country";
+
+			}
+
+			if (eventsArray[z] === 'Pop')
+			{
+				ryanQueryURL += "&taxonomies.name=concert";
+		                            
+		        ryanQueryURL += "&genres.slug=pop";
+
+			}
+
+			if (eventsArray[z] === 'Theater')
+			{
+			    ryanQueryURL += "&taxonomies.name=theater"; 	
+			}
+
+			if (eventsArray[z] === 'Comedy')
+			{
+				ryanQueryURL += "&taxonomies.name=comedy";
+
+			}
+
+			if (eventsArray[z] === 'Sports')
+			{
+				ryanQueryURL += "&taxonomies.name=sports";
+
+			}
+
+		}
+
+
+
+		 $.ajax({
+		          url: ryanQueryURL,
+		          method: "GET"
+		        }).done(function(response) {
+
+		        	console.log(response);
+		        	
+		        	var picker = 0;
+		        	var rowAssign = 0;
+
+		        	for (var i=0;i<6;i++)
+		        	{
+		        		for (var j=0;j<response.events[i].performers.length;j++)
+		        		{
+		        			var performerImage = response.events[i].performers[j].image;
+		        			var performerName = response.events[i].performers[j].name;
+		        			var eventType = response.events[i].type;
+		        			var dateTime = response.events[i].datetime_local;
+		        			var venueName = response.events[i].venue.extended_address;
+		        			var venueAddress = response.events[i].venue.extended_address;
+		        			var venueLat = response.events[i].venue.location.lat;
+		        			var venueLon = response.events[i].venue.location.lon;
+		        			var ticketLink = response.events[i].url;
+
+
+		        			if (picker === 0 || picker === 2 || picker === 4)
+		        			{
+		        				rowAssign = 1;
+		        			}
+		        			if (picker === 1 || picker === 3 || picker === 5)
+		        			{
+		        				rowAssign = 2;
+		        			}
+
+				//checks if the event performer has a saved image,
+				//if it doesn't, print a default pic
+
+		        			if (response.events[i].performers[j].image===null)
+		        			{
+		        				
+
+							$('#eventsSuggestions'+rowAssign).append('<div class="row suggestions-list-items" >\
+									<div class="col-md-6">\
+											<a href="#"><img class="thumbnail-suggestions" src="https://placehold.it/250x200" alt="test">\
+											</a>\
+										</div>\
+										<div class="col-md-6">\
+										<h2 class="suggestions-h2">'+performerName+'</h2>\
+										<h4>'+venueName+' '+venueAddress+'</h4>\
+										<p class="suggestion" data-name="alamo">'+dateTime+'</p>\
+										<p><a class="btn btn-site btn-lg" href="#" id="infoBtn" role="button" data-toggle="modal" \
+										data-target="#myModalInfo" data-lat="'+venueLat+'" data-lon="'+venueLon+'">More Info</a></p>\
+									</div>\
+									</div>');
+
+            					$("#buy-tickets").html("<a class='btn btn-site btn-lg' href='"+ ticketLink +"' role='button' data-target='_blank' data-lat='"+venueLat+"' data-lon='"+venueLon+"'> Buy Tickets </a>");
+		        			}
+		        			
+
+
+		        			else
+		        			{
+
+	    					$('#eventsSuggestions'+rowAssign).append('<div class="row suggestions-list-items" >\
+								<div class="col-md-6">\
+										<a href="#"><img class="thumbnail-suggestions" width="250" src="'+performerImage+'" alt="test">\
+										</a>\
+									</div>\
+									<div class="col-md-6">\
+										<h2 class="suggestions-h2">'+performerName+'</h2>\
+										<h4>'+venueName+' '+venueAddress+'</h4>\
+										<p class="suggestion" data-name="alamo">'+dateTime+'</p>\
+										<p><a class="btn btn-site btn-lg" href="#" id="infoBtn" role="button" data-toggle="modal" \
+										data-target="#myModalInfo" data-lat="'+venueLat+'" data-lon="'+venueLon+'">More Info</a></p>\
+									</div>\
+								</div>');
+
+	    						$("#buy-tickets").html("<a class='btn btn-site btn-lg' href='"+ ticketLink +"' role='button' data-target='_blank' data-lat='"+venueLat+"' data-lon='"+venueLon+"'> Buy Tickets </a>");
+		        			}
+		        		}
+
+		        		picker++;
+		        	}
+
+
+		        	
+		        });
+
+       
+		}
+
+console.log(eventsArray);
+eventsFunction();
+      
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

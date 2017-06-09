@@ -2,48 +2,35 @@
 <html lang="en">
 <head>
 <title>All Y'all!</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="https://fonts.googleapis.com/css?family=Muli|Poppins|Open+Sans|Oswald" rel="stylesheet">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-<!--<script src="https://code.jquery.com/jquery-3.1.1.js"></script>-->
 <link rel="stylesheet" type="text/css" href="assets/css/topher.css">
-
 <script src="https://use.fontawesome.com/fcbf3ec2ad.js"></script>
-<!--<script type="text/javascript" src="assets/javascript/login.js"></script>-->
-
 </head>
 <body>
 
-<div id="konami"></div>
 
-<div class="homepage-hero-module">
-    <div class="video-container">
-    	<div class="btn btn-default" id="login-button">
-		<h4>Log in</h4>
-		</div>
-        <div class="filter"></div>
-        <video autoplay loop class="fillWidth">
+<div class="video-container">
+    	<div class="container-fluid">
+	    	<div class="btn btn-default" id="login-button">
+			<h4>Log in</h4>
+			</div>
+		</div>	
+        <video autoplay loop>
             <source src="assets/images/Background-Video/MP4/Austin.mp4" type="video/mp4" />Your browser does not support the video tag. I suggest you upgrade your browser to Google Chrome.
             <source src="assets/images/Background-Video/WEBM/Austin.webm" type="video/webm" />Your browser does not support the video tag. I suggest you upgrade your browser to Google Chrome.
         </video>
-        <div class="poster hidden">
-            <img src="assets/images/austin.jpg" alt="Austin skyline">
-        </div>
-    </div>
 </div>
 
 
 
 <div class="container">
-	<div class="row">
-		<!-- <div class="btn btn-default" id="login-button">
-		<h4>Log in</h4>
-		</div> -->
-	</div>	
 	<!-- MODAL -->
     <div id="modal-login">
     		<div class="modal-content">
     			<div class="modal-header">
-    				<img id="login-logo" src="assets/images/orangehat.png" alt="All Y'all logo">
+    				<img id="login-logo" src="assets/images/orangehat.jpg" alt="All Y'all logo">
     				<h1 class="modal-title text-center" id="modal-login-label">Welcome to All Y'all</h1>
     				<p id="tagline" class="text-center">Austin's local source for local events</p>
     			</div>
@@ -59,7 +46,7 @@
 							<input type="password" class="form-control" id="createPasswordInput" placeholder="Create a password">
 						</div>
 						<button type="submit" class="btn btn-default" id="newUser">Continue</button>
-                        <button type="submit" class="hidden btn btn-default" id="loginin">login</button>
+						 <button type="submit" class="hidden btn btn-default" id="loginin">login</button>
 						<hr>
 						<div class="row">
 							<div class="col-md-12 text-center">
@@ -71,14 +58,13 @@
     			</div>
     		</div>
     </div>
-</div> 
-
 </div>    
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <!-- easter egg library -->
 <script type="text/javascript" src="https://cdn.rawgit.com/mikeflynn/egg.js/master/egg.min.js"></script>
 <script type="text/javascript">
+// click login - load existing user prompt
 $("#login-button").on("click", function() {
     $("#loginin").removeClass("hidden");
     $("#modal-login-label").html("Log in to see more");
@@ -89,72 +75,6 @@ $("#login-button").on("click", function() {
     $("#facebook-btn").html('<i class="fa fa fa-facebook" aria-hidden="true"></i> Sign in with Facebook')
     $("#google-btn").html('<i class="fa fa-google-plus" aria-hidden="true"></i> Sign in with Google</button>')
 });
-
-//Video
-$( document ).ready(function() {
-    // $(".addUser").show()
-
-
-    scaleVideoContainer();
-
-    initBannerVideoSize('.video-container .poster img');
-    initBannerVideoSize('.video-container .filter');
-    initBannerVideoSize('.video-container video');
-
-    $(window).on('resize', function() {
-        scaleVideoContainer();
-        scaleBannerVideoSize('.video-container .poster img');
-        scaleBannerVideoSize('.video-container .filter');
-        scaleBannerVideoSize('.video-container video');
-    });
-});
-
-
-function scaleVideoContainer() {
-
-    var height = $(window).height() + 5;
-    var unitHeight = parseInt(height) + 'px';
-    $('.homepage-hero-module').css('height',unitHeight);
-
-}
-
-function initBannerVideoSize(element){
-
-    $(element).each(function(){
-        $(this).data('height', $(this).height());
-        $(this).data('width', $(this).width());
-    });
-
-    scaleBannerVideoSize(element);
-
-}
-
-function scaleBannerVideoSize(element){
-
-    var windowWidth = $(window).width(),
-    windowHeight = $(window).height() + 5,
-    videoWidth,
-    videoHeight;
-
-    // console.log(windowHeight);
-
-    $(element).each(function(){
-        var videoAspectRatio = $(this).data('height')/$(this).data('width');
-
-        $(this).width(windowWidth);
-
-        if(windowWidth < 1000){
-            videoHeight = windowHeight;
-            videoWidth = videoHeight / videoAspectRatio;
-            $(this).css({'margin-top' : 0, 'margin-left' : -(videoWidth - windowWidth) / 2 + 'px'});
-
-            $(this).width(videoWidth).height(videoHeight);
-        }
-
-        $('.homepage-hero-module .video-container video').addClass('fadeIn animated');
-
-    });
-}
 
 // konami easter egg
 var egg = new Egg();
@@ -170,8 +90,6 @@ egg
     alert("HOWDY PARTNER!")
 
   }).listen();
-
-
     
 
 
@@ -179,5 +97,6 @@ egg
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript" src="assets/javascript/app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/4.1.1/firebase.js"></script>
+
 </body>
 </html>
