@@ -370,7 +370,8 @@ function submit(){
 // Food Suggestions Part
 
 var zomatoAPIkey = "4b4047ebe163df7deee6b42dd7828188"//"142b97a736485a30ff5b9a92ddbb8fde";
-var foodArray=["American", "Italian", "Chinese", "Mexican", "Japanese", "Thai", "BBQ", "Indian"];
+// var foodArray=["American", "Italian", "Chinese", "Mexican", "Japanese", "Thai", "BBQ", "Indian"];
+
 var foodPickedArray=[];
 var foodCode=[];
 var foodType="";
@@ -381,10 +382,10 @@ $.ajax({
     method:"GET"
 }).done(function(response){
     foodCode=response.cuisines;
-    if(foodPickedArray.length>0){
+    if(foodArray.length>0){
         foodType="";
         for(var i=0; i<foodCode.length;i++){
-            if(foodPickedArray.indexOf(foodCode[i].cuisine.cuisine_name.toUpperCase())>-1){
+            if(foodArray.indexOf(foodCode[i].cuisine.cuisine_name.toUpperCase())>-1){
                 if(foodType!=""){
                     foodType=foodType+"%2C"+foodCode[i].cuisine.cuisine_id.toString();
                 }
