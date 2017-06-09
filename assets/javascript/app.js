@@ -355,18 +355,28 @@ function submit(){
 
 
 
-database.ref(username).on('value', function(snapshot) {
-  console.log(snapshot.val());
 
-  console.log(Object.keys(snapshot));
+
+
+
+database.ref(username).on('value', getData)
   
-});
 
 
 
 
 
+function getData(data) {
+var preferences = data.val()
 
+	var key = Object.keys(preferences)
+	console.log(key)
+
+	// for (var i = 0; i < key.length; i++) {
+	// 	var k = keys[i];
+	// 	var f
+	// }
+}
 
 
 
