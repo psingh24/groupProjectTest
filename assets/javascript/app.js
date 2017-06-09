@@ -356,7 +356,9 @@ function submit(){
 
 
 database.ref(username).on('value', function(snapshot) {
-  console.log(snapshot.val());
+  console.log(snapshot.val().food.val());
+  console.log(snapshot.val().food[0]);
+  console.log(snapshot.val().food[2]);
 });
 
 
@@ -383,6 +385,10 @@ $.ajax({
     method:"GET"
 }).done(function(response){
     foodCode=response.cuisines;
+
+database.ref(username).on('value', function(snapshot) {
+ 		 console.log(snapshot.val());
+});
     if(foodArray.length>0){
         foodType="";
         for(var i=0; i<foodCode.length;i++){
