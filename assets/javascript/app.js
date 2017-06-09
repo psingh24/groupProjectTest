@@ -354,7 +354,7 @@ function submit(){
 
 
 
-database.ref("Prabhdeep Singh/food").on('value', function(snapshot) {
+database.ref(username +"/food").on('value', function(snapshot) {
 	console.log(snapshot.val())
 });
 
