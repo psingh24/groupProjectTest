@@ -356,7 +356,7 @@ function submit(){
 
 
 database.ref(username).on('value', function(snapshot) {
-  console.log(snapshot.val().food.val());
+  console.log(snapshot.val().food);
   console.log(snapshot.val().food[0]);
   console.log(snapshot.val().food[2]);
 });
