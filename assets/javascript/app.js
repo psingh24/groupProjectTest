@@ -359,7 +359,7 @@ function submit(){
 
 
 
-database.ref(username).on('value', getData)
+database.ref(username).child("food").on('value', getData)
   
 
 
