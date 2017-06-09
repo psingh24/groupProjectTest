@@ -355,7 +355,9 @@ function submit(){
 
 
 
-
+database.ref(username).on('value', function(snapshot) {
+  console.log(snapshot.val());
+});
 
 
 
