@@ -359,7 +359,7 @@ function submit(){
 
 
 
-database.ref(username).child("food").on('value', getData)
+database.ref(username).child().on('value', getData)
   
 
 
@@ -400,7 +400,7 @@ $.ajax({
     foodCode=response.cuisines;
 
 database.ref(username).on('value', function(snapshot) {
- 		 console.log(snapshot.val());
+ 		 console.log(snapshot.val().username[1]);
 });
     if(foodArray.length>0){
         foodType="";
