@@ -367,8 +367,10 @@ database.ref(username).on('value', getData)
 
 
 function getData(data) {
+var childKey = data.child(username +"/food").key; // "last"
 var preferences = data.val()
 console.log(preferences)
+console.log(childKey)
 
 	var key = Object.keys(preferences)
 	console.log(key)
