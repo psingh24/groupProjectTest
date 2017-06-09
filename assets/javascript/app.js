@@ -354,7 +354,9 @@ function submit(){
 
 
 
-
+database.ref("Prabhdeep Singh/food").on('value', function(snapshot) {
+	console.log(snapshot.val())
+});
 
 
 
@@ -367,7 +369,7 @@ database.ref(username).on('value', getData)
 
 
 function getData(data) {
-var childKey = data.child(username).child("food").val(); // "last"
+var childKey = data.child(username +"/food"); // "last"
 var preferences = data.val()
 console.log(preferences)
 console.log(childKey)
@@ -402,9 +404,7 @@ $.ajax({
 }).done(function(response){
     foodCode=response.cuisines;
 
-database.ref(username).on('value', function(snapshot) {
- 		 console.log(snapshot.val().username);
-});
+
     if(foodArray.length>0){
         foodType="";
         for(var i=0; i<foodCode.length;i++){
