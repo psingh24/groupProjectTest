@@ -254,7 +254,7 @@ function drinks() {
 		if($(this).attr("data-state")=="unclicked"){
 			if(drinksArray.length<2){
 				var selection = $(this).attr("data-name");
-				drinksArray.push(selection);
+				drinksArray.push(selection.toUpperCase());
 
 				if($(this).attr("data-type")!="caption"){
 					$(this).addClass("clicked");
