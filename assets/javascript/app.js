@@ -155,7 +155,7 @@ firebase.auth().onAuthStateChanged(function(firebaseUser){
 		console.log("not lgged In")
 	}
 })
-console.log(username)
+console.log(firebaseUser.displayName)
 
 //Loading different pages
 function loadMainPage() {
