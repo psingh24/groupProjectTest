@@ -373,7 +373,7 @@ var preferences = data.val()
 	console.log(key)
 
 	for (var i = 0; i < key.length; i++) {
-		var k = keys[i];
+		var k = key[i];
 		console.log(k)
 		var food = key[k].food
 		console.log(food)
