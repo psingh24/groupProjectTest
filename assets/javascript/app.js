@@ -140,7 +140,7 @@ firebase.auth().onAuthStateChanged(function(firebaseUser){
 		name = firebaseUser.displayName
 
 		localStorage.setItem("name", name);
-		console.log(name)
+		
 
 		
 		userHtml.html("Welcome "+ firebaseUser.displayName)
@@ -160,7 +160,6 @@ firebase.auth().onAuthStateChanged(function(firebaseUser){
 	}
 })
 
-console.log(name)
 //Loading different pages
 function loadMainPage() {
      window.location.href = 'preferences.html';
@@ -285,7 +284,7 @@ function drinks() {
 			}
 			$(this).attr("data-state","unclicked");
 		}
-	    console.log(drinksArray);
+	    // console.log(drinksArray);
 	});
 }
 
@@ -323,7 +322,7 @@ function events() {
 			}
 			$(this).attr("data-state","unclicked");
 		}
-	    console.log(eventsArray);
+	    // console.log(eventsArray);
 	});
 }
 
@@ -360,37 +359,6 @@ function submit(){
 
 var userName = localStorage.getItem("name");
 
-database.ref(userName +"/food").on('value', function(snapshot) {
-	console.log(snapshot.val())
-});
-
-
-
-
-database.ref(name +"/food").on('value', getData)
-  
-
-
-
-
-
-function getData(data) {
-var childKey = data.child(username +"/food"); // "last"
-var preferences = data.val()
-console.log(preferences)
-console.log(childKey)
-
-	var key = Object.keys(preferences)
-	console.log(key)
-
-	for (var i = 0; i < key.length; i++) {
-		var k = key[i];
-		console.log(k)
-		var food = key[k]
-		console.log(food)
-	}
-}
-
 
 
 
@@ -410,6 +378,10 @@ $.ajax({
 }).done(function(response){
     foodCode=response.cuisines;
 
+database.ref(userName +"/food").on('value', function(snapshot) {
+	console.log(snapshot.val())
+	var foodArray = snapshot.val();
+// });
 
     if(foodArray.length>0){
         foodType="";
@@ -447,6 +419,7 @@ $.ajax({
             }
         });
     }
+	});
 
 })
 
@@ -470,7 +443,7 @@ $.ajax({
         if(drinkPickedArray.indexOf(drinkCode[i].establishment.name.toUpperCase())>-1){
             drinkTypeArray.push(drinkCode[i].establishment.id);
         }
-        console.log(drinkTypeArray);
+        // console.log(drinkTypeArray);
     }
 
     if(drinkTypeArray.length==1){
@@ -833,7 +806,7 @@ var ryanQueryURL = "https://api.seatgeek.com/2/events?venue.city=Austin&client_i
 
 //seat geek app secret: a44eefef28620b890494943cf09df0f1cee710ab733dd772d47b947311f5be58
 
-console.log('yes');
+// console.log('yes');
 //category buttons, adds taxonomies to search ryanQueryURL
 function eventsFunction(){
 
@@ -843,7 +816,7 @@ function eventsFunction(){
 
 			if (eventsArray[z] === 'Rock')
 			{
-				console.log(ryanQueryURL);
+				// console.log(ryanQueryURL);
 
 				ryanQueryURL += "&taxonomies.name=concert";
 								                        
@@ -907,7 +880,7 @@ function eventsFunction(){
 		          method: "GET"
 		        }).done(function(response) {
 
-		        	console.log(response);
+		        	// console.log(response);
 		        	
 		        	var picker = 0;
 		        	var rowAssign = 0;
@@ -930,8 +903,8 @@ function eventsFunction(){
 		        			var venueLat = response.events[i].venue.location.lat;
 		        			var venueLon = response.events[i].venue.location.lon;
 		        			var ticketLink = response.events[i].url;
-		        			console.log(momentTime);
-		        			console.log(momentDate);
+		        			// console.log(momentTime);
+		        			// console.log(momentDate);
 
 
 		        			if (picker === 0 || picker === 2 || picker === 4)
@@ -970,7 +943,7 @@ function eventsFunction(){
 								// $("#event-address").html("<h4>'"+venueName+"' '"+venueAddress+"'</h4>");
 								// $("#event-date").html("<h5 class='suggestion' data-name='alamo'>Date: &nbsp; '"+momentDate+"'</h5>");
 								// $("#event-time").html("<h5 class='suggestion' data-name='alamo'>Time: &nbsp; '"+momentTime+"'</h5>");
-								console.log(ticketLink);
+								// console.log(ticketLink);
 
 
 
@@ -1002,7 +975,7 @@ function eventsFunction(){
 								// $("#event-address").html("<h4>'"+venueName+"' '"+venueAddress+"'</h4>");
 								// $("#event-date").html("<h5 class='suggestion' data-name='alamo'>Date: &nbsp; '"+momentDate+"'</h5>");
 								// $("#event-time").html("<h5 class='suggestion' data-name='alamo'>Time: &nbsp; '"+momentTime+"'</h5>");
-								console.log(ticketLink);
+								// console.log(ticketLink);
 
 		        			}
 		        		}
@@ -1017,7 +990,7 @@ function eventsFunction(){
        
 		}
 
-console.log(eventsArray);
+// console.log(eventsArray);
 eventsFunction();
       
 });
