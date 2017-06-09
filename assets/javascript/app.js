@@ -131,12 +131,14 @@ $("#logout").on("click", function() {
 	});
 })
 // Firebase on auth change. Saves user name
+var name;
 firebase.auth().onAuthStateChanged(function(firebaseUser){
 	if(firebaseUser) {
        //USer is signed in
 		console.log(firebaseUser)
 		
-		username = firebaseUser.displayName
+		name = firebaseUser.displayName
+		console.log(name)
 
 		
 		userHtml.html("Welcome "+ firebaseUser.displayName)
@@ -155,8 +157,8 @@ firebase.auth().onAuthStateChanged(function(firebaseUser){
 		console.log("not lgged In")
 	}
 })
-console.log(firebaseUser.displayName)
 
+console.log(name)
 //Loading different pages
 function loadMainPage() {
      window.location.href = 'preferences.html';
@@ -354,16 +356,16 @@ function submit(){
  submit();
 
 
-console.log(username)
+console.log(name)
 
-database.ref(username +"/food").on('value', function(snapshot) {
+database.ref(name +"/food").on('value', function(snapshot) {
 	console.log(snapshot.val())
 });
 
 
 
 
-database.ref(username).on('value', getData)
+database.ref(name +"/food").on('value', getData)
   
 
 
