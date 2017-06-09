@@ -372,10 +372,12 @@ var preferences = data.val()
 	var key = Object.keys(preferences)
 	console.log(key)
 
-	// for (var i = 0; i < key.length; i++) {
-	// 	var k = keys[i];
-	// 	var f
-	// }
+	for (var i = 0; i < key.length; i++) {
+		var k = keys[i];
+		console.log(k)
+		var food = key[k].food
+		console.log(food)
+	}
 }
 
 
