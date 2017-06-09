@@ -817,6 +817,7 @@ function eventsFunction(){
 	database.ref(userName +"/events").on('value', function(snapshot) {
 	console.log(snapshot.val())
 	var eventsArray = snapshot.val();
+	console.log(eventsArray)
 
 		for (var z = 0; z < eventsArray.length ; z++)
 
