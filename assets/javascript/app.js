@@ -434,6 +434,7 @@ $.ajax({
     method:"GET"
 }).done(function(response){
     drinkCode=response.establishments;
+	console.log(drinkCode)
     drinkType="";
     var drinkTypeArray=[];
 
