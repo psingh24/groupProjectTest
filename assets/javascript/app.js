@@ -138,6 +138,8 @@ firebase.auth().onAuthStateChanged(function(firebaseUser){
 		console.log(firebaseUser)
 		
 		name = firebaseUser.displayName
+
+		localStorage.setItem("name", name);
 		console.log(name)
 
 		
@@ -356,9 +358,9 @@ function submit(){
  submit();
 
 
-console.log(name)
+var userName = localStorage.getItem("name");
 
-database.ref(name +"/food").on('value', function(snapshot) {
+database.ref(userName +"/food").on('value', function(snapshot) {
 	console.log(snapshot.val())
 });
 
