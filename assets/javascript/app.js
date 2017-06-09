@@ -424,8 +424,8 @@ database.ref(userName +"/food").on('value', function(snapshot) {
 
 // Drink Suggestions Part
 
-var drinkArray=["Bar", "Coffee shop", "Wine Bar","Juice Bar", "Beer Garden", "Brewery", "Lounge"]
-var drinkPickedArray= [];
+// var drinkArray=["Bar", "Coffee shop", "Wine Bar","Juice Bar", "Beer Garden", "Brewery", "Lounge"]
+// var drinkPickedArray= [];
 var drinkCode=[];
 var drinkType="";
 
@@ -437,11 +437,15 @@ $.ajax({
     drinkType="";
     var drinkTypeArray=[];
 
+	database.ref(userName +"/drinks").on('value', function(snapshot) {
+	console.log(snapshot.val())
+	var drinksArray = snapshot.val();
+
     for(var i=0; i<drinkCode.length;i++){
-        if(drinkPickedArray.indexOf(drinkCode[i].establishment.name.toUpperCase())>-1){
+        if(drinksArray.indexOf(drinkCode[i].establishment.name.toUpperCase())>-1){
             drinkTypeArray.push(drinkCode[i].establishment.id);
         }
-        // console.log(drinkTypeArray);
+        console.log(drinkTypeArray);
     }
 
     if(drinkTypeArray.length==1){
@@ -494,6 +498,7 @@ $.ajax({
             }
         }); 
     }
+	});
 });
 
 
