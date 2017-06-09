@@ -376,7 +376,7 @@ console.log(preferences)
 	for (var i = 0; i < key.length; i++) {
 		var k = key[i];
 		console.log(k)
-		var food = key[k].food
+		var food = key[k]
 		console.log(food)
 	}
 }
