@@ -341,7 +341,7 @@ function submit(){
  	    console.log(foodArray);
  	    console.log(drinksArray);
 
- 	   	 database.ref(username).update({
+ 	   	 database.ref(userName).update({
  	   		food : foodArray,
  	   		drinks : drinksArray,
  	   		events : eventsArray
