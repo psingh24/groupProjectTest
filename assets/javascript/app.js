@@ -814,6 +814,10 @@ var ryanQueryURL = "https://api.seatgeek.com/2/events?venue.city=Austin&client_i
 //category buttons, adds taxonomies to search ryanQueryURL
 function eventsFunction(){
 
+	database.ref(userName +"/events").on('value', function(snapshot) {
+	console.log(snapshot.val())
+	var eventsArray = snapshot.val();
+
 		for (var z = 0; z < eventsArray.length ; z++)
 
 		{
@@ -876,6 +880,7 @@ function eventsFunction(){
 			}
 
 		}
+	})
 
 
 
