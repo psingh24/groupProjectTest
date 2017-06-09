@@ -359,7 +359,7 @@ function submit(){
 
 
 
-database.ref(username).child().on('value', getData)
+database.ref(username).on('value', getData)
   
 
 
@@ -368,6 +368,7 @@ database.ref(username).child().on('value', getData)
 
 function getData(data) {
 var preferences = data.val()
+console.log(preferences)
 
 	var key = Object.keys(preferences)
 	console.log(key)
