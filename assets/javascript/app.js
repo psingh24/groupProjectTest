@@ -352,7 +352,7 @@ function submit(){
  submit();
 
 
-
+console.log(username)
 
 database.ref(username +"/food").on('value', function(snapshot) {
 	console.log(snapshot.val())
