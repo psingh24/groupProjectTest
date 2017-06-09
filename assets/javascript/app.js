@@ -187,7 +187,7 @@ function loadMainPage() {
 
 var foodArray = [];
 var drinksArray = [];
-var eventsArray = ['Rock','Country','Sports'];
+var eventsArray = [];
 
 $(".drinks-section").hide();
 $(".events-section").hide();
