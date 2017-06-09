@@ -1,7 +1,7 @@
 $(document).ready(function(){
 
 var userHtml = $("#username");
-var username;
+
 //  Initialize Firebase
    var config = {
     apiKey: "AIzaSyCgQFFxv6-cd0vRQesrZUD447sO7AEYklo",
@@ -137,11 +137,9 @@ firebase.auth().onAuthStateChanged(function(firebaseUser){
        //USer is signed in
 		console.log(firebaseUser)
 		
-		name = firebaseUser.displayName
+		var name = firebaseUser.displayName
 
 		localStorage.setItem("name", name);
-		
-
 		
 		userHtml.html("Welcome "+ firebaseUser.displayName)
 		
@@ -220,7 +218,7 @@ function food() {
 	$(".food").on("click", function(){
 		if($(this).attr("data-state")=="unclicked"){
 			var selection = $(this).attr("data-name");
-			foodArray.push(selection);
+			foodArray.push(selection.toUpperCase());
 			if($(this).attr("data-type")!="caption"){
 				$(this).addClass("clicked");
 				$("#caption"+$(this).attr("data-name")).attr("data-state","clicked");
@@ -357,12 +355,12 @@ function submit(){
  submit();
 
 
+
+
+
+
+
 var userName = localStorage.getItem("name");
-
-
-
-
-
 // Food Suggestions Part
 
 var zomatoAPIkey = "4b4047ebe163df7deee6b42dd7828188"//"142b97a736485a30ff5b9a92ddbb8fde";
