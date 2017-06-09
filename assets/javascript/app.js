@@ -345,7 +345,7 @@ function submit(){
  	   	});	
 
  	   	//sets events ajax query url with events array and prints to suggestions page
- 	   	eventsFunction();
+ 	   	// eventsFunction();
  	   	loadSuggestionPage();
 
 
