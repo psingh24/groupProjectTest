@@ -159,24 +159,24 @@ $(".signin").on("click", function(event) {
     event.preventDefault()
 	var method = $(this).attr("data")
 	console.log("hello")
-        if (method === "googleLogin") {
+        if (method === "google") {
 		googleSignIn();
 		
         }
-	else if(method === "facebookLogin") {
+	else if(method === "facebook") {
 		facebookSignIn();
 		
     } 
 })
-$(".logingIn").on("click", function(event) {
+$(".test").on("click", function(event) {
     event.preventDefault()
 	var method = $(this).attr("data")
 	console.log("hello")
-        if (method === "google") {
+        if (method === "googleLogin") {
 		googleSignIntwo();
 		
         }
-	else if(method === "facebook") {
+	else if(method === "facebookLogin") {
 		facebookSignInTwo()
 		
     } 
