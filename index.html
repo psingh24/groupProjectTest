@@ -66,6 +66,10 @@
 <script type="text/javascript">
 // click login - load existing user prompt
 $("#login-button").on("click", function() {
+	$("#facebook-btn").removeClass("signin")
+	$("#google-btn").removeClass("signin")
+	$("#facebook-btn").addClass("logingIn")
+	$("#google-btn").addClass("logingIn")
     $("#loginin").removeClass("hidden");
     $("#modal-login-label").html("Log in to see more");
     $("#newUser").addClass("hidden");

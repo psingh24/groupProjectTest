@@ -51,7 +51,7 @@ function signInWithEmailAndPassword() {
 			console.log(name)
 		localStorage.setItem("name", user.displayName);
 		// user.updateProfile({displayName: displayName})
-		loadLoginPage()
+		loadProfilePage()
 
 
 	})			 
@@ -78,6 +78,26 @@ function googleSignIn() {
 			  // ...
 			});
   }
+  function googleSignIntwo() {
+	firebase.auth().signInWithPopup(google).then(function(result) {
+		// This gives you a Google Access Token. You can use it to access the Google API.
+		var token = result.credential.accessToken;
+		// The signed-in user info.
+		var user = result.user;
+
+	loadProfilePage()
+			
+		}).catch(function(error) {
+			  // Handle Errors here.
+			  var errorCode = error.code;
+			  var errorMessage = error.message;
+			  // The email of the user's account used.
+			  var email = error.email;
+			  // The firebase.auth.AuthCredential type that was used.
+			  var credential = error.credential;
+			  // ...
+			});
+  }
 //Sign in With FB
 function facebookSignIn() {
 	firebase.auth().signInWithPopup(facebook).then(function(result) {
@@ -88,6 +108,27 @@ function facebookSignIn() {
 		
            
 		  loadMainPage()
+		
+        }).catch(function(error) {
+			// Handle Errors here.
+			var errorCode = error.code;
+			var errorMessage = error.message;
+			// The email of the user's account used.
+			var email = error.email;
+			// The firebase.auth.AuthCredential type that was used.
+			var credential = error.credential;
+			// ...
+		});
+  }
+  function facebookSignInTwo() {
+	firebase.auth().signInWithPopup(facebook).then(function(result) {
+		  // This gives you a Facebook Access Token. You can use it to access the Facebook API.
+		  var token = result.credential.accessToken;
+		  // The signed-in user info.
+		  var user = result.user;
+		
+           
+		 loadProfilePage()
 		
         }).catch(function(error) {
 			// Handle Errors here.
@@ -127,6 +168,21 @@ $(".signin").on("click", function(event) {
 		
     } 
 })
+$(".logingIn").on("click", function(event) {
+    event.preventDefault()
+	var method = $(this).attr("data")
+	console.log("hello")
+        if (method === "google") {
+		googleSignIntwo();
+		
+        }
+	else if(method === "facebook") {
+		facebookSignInTwo()
+		
+    } 
+})
+
+
 // Button click to sign out
 $("#logout").on("click", function() {
 	firebase.auth().signOut().then(function() {
@@ -187,7 +243,7 @@ function loadMainPage() {
  }
 
 
- function	loadLoginPage() {
+ function	loadProfilePage() {
 	 window.location.href= "login.html"
  }
 
