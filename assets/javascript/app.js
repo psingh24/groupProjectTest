@@ -47,7 +47,19 @@ function signInWithEmailAndPassword() {
 	firebase.auth().signInWithEmailAndPassword(email, password)
 		.then(function(user) {
 		// user.updateProfile({displayName: displayName})
-		loadMainPage()
+		loadLoginPage()
+
+database.ref(userName +"/food").on('value', function(snapshot) {
+	console.log(snapshot.val())
+
+});
+
+
+
+
+
+
+
 	})			 
 }
 
@@ -144,6 +156,8 @@ firebase.auth().onAuthStateChanged(function(firebaseUser){
 		userHtml.html("Welcome "+ firebaseUser.displayName)
 		
 		$("#usernameSuggestions").html(firebaseUser.displayName+"'s Suggestions" )
+
+		$("userNameLogin").html("<h3>Welcome Back</h3>"+firebaseUser.displayName+"<h3>!</h3>")
 		
 		signedIn = ref.child(firebaseUser.displayName) 
         
@@ -176,6 +190,11 @@ function loadMainPage() {
  }
    function loadSuggestionPage() {
      window.location.href = 'suggestions.html';	 
+ }
+
+
+ function	loadLoginPage() {
+	 window.location.href= "login.html"
  }
 
 //  $("#usernameSuggestions").html(JSON.parse(localStorage['name'])+"'s Suggestions" )
