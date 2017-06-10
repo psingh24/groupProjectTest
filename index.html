@@ -52,8 +52,8 @@
 							<div class="col-md-12 text-center">
 								<button id="facebook-btn" type="submit" data="facebook" class="signin btn btn-primary"><i class="fa fa fa-facebook" aria-hidden="true"></i> Sign up with Facebook</button>
 								<button id="google-btn" type="submit" data="google" class="signin btn btn-danger"><i class="fa fa-google-plus" aria-hidden="true"></i> Sign up with Google</button>
-								<button id="facebook-btn" type="submit" data="facebook" class="logingIn hidden btn btn-primary"><i class="fa fa fa-facebook" aria-hidden="true"></i> Sign In with Facebook</button>
-								<button id="google-btn" type="submit" data="google" class="logingIn hidden btn btn-danger"><i class="fa fa-google-plus" aria-hidden="true"></i> Sign In with Google</button>
+								<button type="submit" data="facebook" class="fbLogin hidden btn btn-primary"><i class="fa fa fa-facebook" aria-hidden="true"></i> Sign In with Facebook</button>
+								<button  type="submit" data="google" class="gLogin hidden btn btn-danger"><i class="fa fa-google-plus" aria-hidden="true"></i> Sign In with Google</button>
 							</div>
 						</div>
 					</form> 
@@ -68,8 +68,10 @@
 <script type="text/javascript">
 // click login - load existing user prompt
 $("#login-button").on("click", function() {
-	$(".signin").addClass("hidden")
-    $(".loginin").removeClass("hidden");
+	$("#facebook-btn").addClass("hidden")
+	$("#google-btn").addClass("hidden")
+    $(".fbLogin").removeClass("hidden");
+	$(".gLogin").removeClass("hidden");
     $("#modal-login-label").html("Log in to see more");
     $("#newUser").addClass("hidden");
     $("#tagline").remove();
