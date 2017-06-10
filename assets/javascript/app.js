@@ -151,7 +151,7 @@ firebase.auth().onAuthStateChanged(function(firebaseUser){
 		
 		$("#usernameSuggestions").html(firebaseUser.displayName+"'s Suggestions" )
 
-		$("#userNameLogin").html("<h3>Welcome Back</h3>"+firebaseUser.displayName+"<h3>!</h3>")
+		$("#userNameLogin").html("<h3>Welcome Back"+firebaseUser.displayName+"!</h3>")
 		
 		signedIn = ref.child(firebaseUser.displayName) 
         
