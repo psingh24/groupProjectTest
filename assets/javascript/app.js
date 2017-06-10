@@ -52,6 +52,8 @@ function signInWithEmailAndPassword() {
 database.ref(userName +"/food").on('value', function(snapshot) {
 	console.log(snapshot.val())
 
+	$("foodLogin").text(snapshot.val())
+
 });
 
 
