@@ -65,7 +65,7 @@ function googleSignIn() {
 		// The signed-in user info.
 		var user = result.user;
 
-		loadMainPage()
+		loadProfilePage()
 			
 		}).catch(function(error) {
 			  // Handle Errors here.
