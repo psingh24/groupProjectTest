@@ -85,7 +85,7 @@ function googleSignIn() {
 		// The signed-in user info.
 		var user = result.user;
 
-	loadProfilePage()
+		loadProfilePage()
 			
 		}).catch(function(error) {
 			  // Handle Errors here.
@@ -243,7 +243,7 @@ function loadMainPage() {
  }
 
 
- function	loadProfilePage() {
+ function loadProfilePage() {
 	 window.location.href= "login.html"
  }
 
