@@ -255,7 +255,7 @@ function drinks() {
 			if(drinksArray.length<2){
 				var selection = $(this).attr("data-name");
 				drinksArray.push(selection.toUpperCase());
-				console.log(drinksArray)
+			
 
 				if($(this).attr("data-type")!="caption"){
 					$(this).addClass("clicked");
