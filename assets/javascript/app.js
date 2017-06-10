@@ -283,7 +283,7 @@ function drinks() {
 			}
 			$(this).attr("data-state","unclicked");
 		}
-	    // console.log(drinksArray);
+	    console.log(drinksArray);
 	});
 }
 
