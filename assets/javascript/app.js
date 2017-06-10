@@ -48,6 +48,7 @@ function signInWithEmailAndPassword() {
 		.then(function(user) {
 
 			var name = user.displayName
+			console.log(name)
 		localStorage.setItem("name", user.displayName);
 		// user.updateProfile({displayName: displayName})
 		loadLoginPage()
