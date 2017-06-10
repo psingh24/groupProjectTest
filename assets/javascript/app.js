@@ -65,7 +65,7 @@ function googleSignIn() {
 		// The signed-in user info.
 		var user = result.user;
 
-		loadProfilePage()
+		loadMainPage()
 			
 		}).catch(function(error) {
 			  // Handle Errors here.
@@ -208,6 +208,8 @@ firebase.auth().onAuthStateChanged(function(firebaseUser){
 		$("#usernameSuggestions").html(firebaseUser.displayName+"'s Suggestions" )
 
 		$("#userNameLogin").html("<h3 class='text-center'>Welcome Back "+firebaseUser.displayName+"!</h3>")
+
+		$("#userNameLoginName").text(firebaseUser.displayName)
 		
 		signedIn = ref.child(firebaseUser.displayName) 
         
