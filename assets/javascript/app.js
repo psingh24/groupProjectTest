@@ -49,18 +49,6 @@ function signInWithEmailAndPassword() {
 		// user.updateProfile({displayName: displayName})
 		loadLoginPage()
 
-database.ref(userName +"/food").on('value', function(snapshot) {
-	console.log(snapshot.val())
-
-	$("foodLogin").text(snapshot.val())
-
-});
-
-
-
-
-
-
 
 	})			 
 }
@@ -202,7 +190,12 @@ function loadMainPage() {
 //  $("#usernameSuggestions").html(JSON.parse(localStorage['name'])+"'s Suggestions" )
 
 
+database.ref(userName +"/food").on('value', function(snapshot) {
+	console.log(snapshot.val())
 
+	$("foodLogin").text(snapshot.val())
+
+});
 
 
 
