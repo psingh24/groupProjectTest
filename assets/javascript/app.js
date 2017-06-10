@@ -159,11 +159,11 @@ $(".signin").on("click", function(event) {
     event.preventDefault()
 	var method = $(this).attr("data")
 	console.log("hello")
-        if (method === "google") {
+        if (method === "googleLogin") {
 		googleSignIn();
 		
         }
-	else if(method === "facebook") {
+	else if(method === "facebookLogin") {
 		facebookSignIn();
 		
     } 
